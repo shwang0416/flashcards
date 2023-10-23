@@ -18,11 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex justify-between bg-slate-600 p-5">
-          <a href="/">go Home</a>
-          <a href="/help">Help</a>
+        <div className="flex flex-col h-screen">
+          <div className="flex justify-between bg-slate-600 p-5">
+            <a href="/">go Home</a>
+            <a href="/help">Help</a>
+          </div>
+          {children}
         </div>
-        {children}
       </body>
     </html>
   );

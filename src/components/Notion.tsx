@@ -18,7 +18,7 @@ export default function Notion({ data, pageId }: any) {
     <NotionRenderer
       disableHeader
       recordMap={data}
-      fullPage={true}
+      fullPage={false}
       darkMode={false}
       rootPageId={pageId}
       components={{

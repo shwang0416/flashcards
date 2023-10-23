@@ -6,8 +6,8 @@ const SidebarLayout = async ({ children }: { children: ReactNode }) => {
   const pairs = await getPairs();
 
   return (
-    <div className="flex flex-row">
-      <div className="bg-slate-300 flex flex-col w-fit min-h-screen">
+    <div className="flex flex-row flex-grow">
+      <div className="bg-slate-300 flex flex-col w-fit">
         {pairs.map((pair) => {
           const { id, title, playCount, TagSatisfactionStatus, tags } = pair;
 
