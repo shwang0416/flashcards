@@ -20,26 +20,28 @@ const ButtonContainer = () => {
     window.localStorage.setItem("currentCardId", next);
     router.push(next);
   };
-  const goPrev = (event: any) => {
-    event.preventDefault();
+  // const goPrev = (event: any) => {
+  //   event.preventDefault();
 
-    window.localStorage.setItem("currentCardId", prev);
-    router.push(prev);
-  };
+  //   window.localStorage.setItem("currentCardId", prev);
+  //   router.push(prev);
+  // };
   return (
     <>
-      <button
+      {/* <button
         onClick={goPrev}
         className=" bg-slate-600 text-white hover:bg-pink-300 hover:text-slate-800 py-6 rounded-2xl text-2xl"
       >
         prev
-      </button>
-      <button
-        onClick={goNext}
-        className=" bg-slate-600 text-white hover:bg-pink-300 hover:text-slate-800 py-6 rounded-2xl text-2xl"
-      >
-        next
-      </button>
+      </button> */}
+      {next && (
+        <button
+          onClick={goNext}
+          className=" bg-slate-600 text-white hover:bg-pink-300 hover:text-slate-800 py-6 rounded-2xl text-2xl"
+        >
+          next
+        </button>
+      )}
     </>
   );
 };

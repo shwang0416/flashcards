@@ -1,9 +1,11 @@
-"use server";
+import notion from "@/lib/notionhq";
 
-import notion from "@/lib/notion-client";
+const getCardById = async (pageId: string): Promise<any> => {
+  // const DATABASE_ID = process.env.NOTION_DATABASE_ID;
+  // if (!DATABASE_ID) throw new Error("notion env is missing!!!");
 
-const getCardById = async (id: string) => {
-  return await notion.getPage(id);
+  return await notion.pages.retrieve({ page_id: pageId });
+  // console.log(JSON.stringify(query));
 };
 
 export default getCardById;
