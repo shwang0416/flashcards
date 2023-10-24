@@ -37,7 +37,7 @@ const ButtonContainer = () => {
       {next && (
         <button
           onClick={goNext}
-          className=" bg-slate-600 text-white hover:bg-pink-300 hover:text-slate-800 py-6 rounded-2xl text-2xl"
+          className="w-full h-fit bg-slate-600 text-white hover:bg-pink-300 hover:text-slate-800 py-6 rounded-2xl text-2xl"
         >
           next
         </button>

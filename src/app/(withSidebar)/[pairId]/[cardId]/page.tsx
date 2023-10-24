@@ -1,6 +1,7 @@
 import getCardById from "@/adaptor/serverActions/getCardByIdAction";
 import Answer from "@/components/Answer";
 import Question from "@/components/Question";
+import Tag from "@/components/Tag";
 import Link from "next/link";
 
 type Tag = {
@@ -30,10 +31,10 @@ const Page = async ({
   return (
     <>
       <div className="flex flex-col w-full">
-        <div className="flex flex-row justify-between bg-yellow-300 h-20 w-full">
-          <div>
+        <div className="flex flex-row justify-between bg-yellow-300 h-15 w-full">
+          <div className="flex flex-row p-5 gap-2">
             {tags.map((tag: Tag) => (
-              <span key={tag.id}>{tag.name}</span>
+              <Tag textContent={tag.name} color={tag.color} key={tag.id} />
             ))}
           </div>
           {playCount && (
@@ -46,9 +47,14 @@ const Page = async ({
         {flip === "a" ? (
           <Answer cardId={cardId} />
         ) : (
-          <>
-            <Link href={`?flip=a`}>정답 공개</Link>
-          </>
+          <div className="flex justify-center items-center flex-grow">
+            <Link
+              className="w-fit h-fit px-10 bg-slate-600 text-white hover:bg-pink-300 hover:text-slate-800 py-6 rounded-2xl text-2xl"
+              href={`?flip=a`}
+            >
+              정답 공개
+            </Link>
+          </div>
         )}
       </div>
     </>
