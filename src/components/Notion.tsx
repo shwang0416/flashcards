@@ -22,7 +22,7 @@ export default function Notion({ data, pageId }: any) {
       darkMode={false}
       rootPageId={pageId}
       components={{
-        Collection,
+        // Collection,
         Code,
       }}
     />
