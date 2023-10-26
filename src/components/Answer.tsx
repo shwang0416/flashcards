@@ -1,8 +1,8 @@
 import getRecordMapById from "@/adaptor/serverActions/getRecordMapByIdAction";
 import ButtonContainer from "@/app/(withSidebar)/[pairId]/[cardId]/ButtonContainer";
 import Notion from "@/components/Notion";
-import FeedbackBox from "./FeedbackBox";
 import MyAnswer from "./MyAnswer";
+import AskIsCorrect from "./AskIsCorrect";
 
 const Answer = async ({ cardId }: { cardId: string }) => {
   const recordMap = await getRecordMapById(cardId);
@@ -14,7 +14,9 @@ const Answer = async ({ cardId }: { cardId: string }) => {
           <div className="border border-slate-400 mb-4">
             <MyAnswer />
           </div>
-          <FeedbackBox />
+          <div className="flex flex-col">
+            <AskIsCorrect cardId={cardId} />
+          </div>
         </div>
         <div className="flex flex-col">
           <div className="h-80 border border-slate-400">
