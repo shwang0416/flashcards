@@ -27,9 +27,7 @@ const Page = ({
       const pairs = await getPairs();
 
       const cardIds = pairs.filter((pair) => pair.id === pairId)[0]?.cardIds;
-      //FIXME: shuffleArray 구현해야함
       const shuffledCards = shuffleArray(cardIds);
-
       const cardLinkedList = getLinkedList(shuffledCards);
       const currentCardId = shuffledCards[0];
 
