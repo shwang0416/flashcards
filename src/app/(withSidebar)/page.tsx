@@ -18,17 +18,23 @@ const Page = ({}: {}) => {
       const cardLinkedList = getLinkedList(shuffledCards);
       const currentCardId = shuffledCards[0];
 
-      window.localStorage.setItem(
-        "cardLinkedList",
-        JSON.stringify(cardLinkedList),
-      );
-      window.localStorage.setItem("currentCardId", currentCardId);
-      router.push(`/${currentCardId}`);
+      if (currentCardId) {
+        window.localStorage.setItem(
+          "cardLinkedList",
+          JSON.stringify(cardLinkedList),
+        );
+        window.localStorage.setItem("currentCardId", currentCardId);
+        router.push(`/${currentCardId}`);
+      }
     };
     asyncFunc();
   }, [router]);
 
-  return <div className="flex bg-amber-300"></div>;
+  return (
+    <div className="flex flex-row flex-grow justify-center items-center bg-amber-300">
+      No cards available
+    </div>
+  );
 };
 
 export default Page;

@@ -12,10 +12,13 @@ const useNextCard = () => {
   if (!cardId || !parsedData) throw new Error("!cardId || !parsedData");
 
   const { next } = parsedData[cardId];
-
   const goNext = () => {
-    window.localStorage.setItem("currentCardId", next);
-    router.push(next);
+    if (next) {
+      window.localStorage.setItem("currentCardId", next);
+      router.push(next);
+    } else {
+      router.push("/");
+    }
   };
 
   return { goNext };
