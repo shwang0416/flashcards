@@ -14,3 +14,11 @@ type Tag = {
 };
 
 type CardId = string;
+
+export type Card = {
+  id: string;
+  title: string;
+  tags: Tag[];
+  playCount: number;
+  validFrom: Date;
+};
