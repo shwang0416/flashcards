@@ -20,10 +20,9 @@ const Page = async ({
   const { cardId } = params;
   const { flip } = searchParams;
 
-  console.log(`cardId: ${cardId}`);
   const { properties } = await getCardById(cardId);
-  const { Tags, PlayCount, Name, CorrectCount } = properties;
-  const title = Name.title[0].text.content;
+  const { Tags, PlayCount, Title, CorrectCount } = properties;
+  const title = Title.title[0].text.content;
   const tags = Tags.multi_select;
   const playCount = PlayCount.number;
   const correctCount = CorrectCount.number;

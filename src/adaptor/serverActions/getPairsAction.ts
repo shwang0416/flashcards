@@ -7,8 +7,17 @@ const getPairs = async (): Promise<Pair[]> => {
   const DATABASE_ID = process.env.NOTION_DATABASE_ID;
   if (!DATABASE_ID) throw new Error("notion env is missing!!!");
 
-  const query = (await notion.databases.query({ database_id: DATABASE_ID }))
-    .results;
+  const query = (
+    await notion.databases.query({
+      database_id: DATABASE_ID,
+      filter: {
+        property: "ValidFrom",
+        date: {
+          on_or_after: new Date().toISOString(),
+        },
+      },
+    })
+  ).results;
 
   // FIXME: 노션 데이터베이스 타입스크립트 필드 지정 어떻게?
   const pairMapper = (results: any): Promise<Pair[]> => {
