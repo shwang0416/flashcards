@@ -8,7 +8,7 @@ const AskIsCorrect = async ({ cardId }: { cardId: string }) => {
   const playCount = properties.PlayCount.number ?? 0;
 
   return (
-    <div className=" h-20 flex flex-col rounded-xl shadow-lg p-4">
+    <div className=" h-20 flex flex-col items-center justify-center rounded-xl shadow-lg p-4">
       <AskIsCorrectForm
         cardId={cardId}
         ValidFrom={ValidFrom}

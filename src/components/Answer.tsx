@@ -6,8 +6,8 @@ const Answer = async ({ cardId }: { cardId: string }) => {
   const recordMap = await getRecordMapById(cardId);
 
   return (
-    <div className="flex flex-col flex-grow justify-end overflow-hidden px-32 pb-12">
-      <div className="flex flex-col-reverse flex-grow">
+    <div className="flex flex-col flex-grow justify-end overflow-hidden px-10 pb-12">
+      <div className="flex flex-col-reverse flex-grow gap-4">
         <div className="flex w-full justify-center">
           <AskIsCorrect cardId={cardId} />
         </div>
