@@ -24,25 +24,27 @@ const Page = async ({
   const { Tags, PlayCount, Title, CorrectCount } = properties;
   const title = Title.title[0].text.content;
   const tags = Tags.multi_select;
-  const playCount = PlayCount.number;
-  const correctCount = CorrectCount.number;
+  // const playCount = PlayCount.number;
+  // const correctCount = CorrectCount.number ?? 0;
 
   return (
     <>
       <div className="flex flex-col w-full">
-        <div className="flex flex-row justify-between bg-yellow-300 h-15 w-full">
-          <div className="flex flex-row p-5 gap-2">
-            {tags.map((tag: Tag) => (
-              <Tag textContent={tag.name} color={tag.color} key={tag.id} />
-            ))}
-          </div>
-          {playCount && (
-            <div className="">
-              {correctCount}/{playCount}
+        <div className="p-10">
+          <div className="flex flex-row justify-between h-15 w-full pb-2">
+            <div className="flex flex-row gap-2">
+              {tags.map((tag: Tag) => (
+                <Tag textContent={tag.name} color={tag.color} key={tag.id} />
+              ))}
             </div>
-          )}
+            {/* {playCount && (
+              <div className="text-slate-500">
+                {correctCount} / {playCount}
+              </div>
+            )} */}
+          </div>
+          <Question question={title} />
         </div>
-        <Question question={title} />
         {flip === "a" ? (
           <Answer cardId={cardId} />
         ) : (

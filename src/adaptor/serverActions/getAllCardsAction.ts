@@ -23,7 +23,6 @@ const getAllCards = async (): Promise<Card[]> => {
   const cardsMapper = (results: any): Promise<Card[]> => {
     return results.map((column: any) => {
       const { id, properties } = column;
-      console.log(properties.Title);
       const playCount = properties.playCount?.number ?? 0;
       const tags = properties.Tags?.multi_select ?? [];
       const title = properties.Title.title[0].text.content;
