@@ -30,11 +30,7 @@ const Page = ({}: {}) => {
     asyncFunc();
   }, [router]);
 
-  return (
-    <div className="flex flex-row flex-grow justify-center items-center bg-amber-300">
-      No cards available
-    </div>
-  );
+  return <></>;
 };
 
 export default Page;
