@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { HomeIcon, QuestionMarkCircleIcon } from "@heroicons/react/24/solid";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "react-notion-x/src/styles.css";
-import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,17 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-col h-screen">
-          <div className="flex justify-between bg-slate-600 p-5">
-            <Link href="/">
-              <HomeIcon className="h-6 w-6 text-white" />
-            </Link>
-            <Link href="">
-              <QuestionMarkCircleIcon className="h-6 w-6 text-white" />
-            </Link>
-          </div>
-          {children}
-        </div>
+        <div className="flex flex-col h-screen">{children}</div>
       </body>
     </html>
   );

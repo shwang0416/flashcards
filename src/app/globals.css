@@ -25,3 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
+
+button {
+  @apply font-semibold bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white;
+}
