@@ -65,7 +65,6 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
   //   //   세션이 없는 유저 -> 로그인
 
-  console.log(user);
   if (!request.nextUrl.pathname.startsWith("/play-cards") && user) {
     return NextResponse.redirect(new URL("/play-cards", request.url));
   }
@@ -80,7 +79,8 @@ export async function middleware(request: NextRequest) {
 const isAuthPage = (req: NextRequest) =>
   req.nextUrl.pathname.startsWith("/sign-in") ||
   req.nextUrl.pathname.startsWith("/sign-up") ||
-  req.nextUrl.pathname.startsWith("/forgot-password");
+  req.nextUrl.pathname.startsWith("/reset-password") ||
+  req.nextUrl.pathname.startsWith("/update-password");
 
 export const config = {
   matcher: ["/", "/((?!api|_next/static|_next/image|favicon.ico).*)"],

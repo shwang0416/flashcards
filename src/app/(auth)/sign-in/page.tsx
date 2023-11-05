@@ -34,9 +34,14 @@ const Page = () => {
       <div className="flex flex-col gap-10">
         <h2 className="text-xl">로그인 페이지</h2>
         <AuthForm authCallback={formHandler} buttonText="Sign in" />
-        <Link href="/sign-up" className="underline text-slate-500">
-          회원가입
-        </Link>
+        <div className="flex flex-row gap-x-2">
+          <Link href="/sign-up" className="underline text-slate-500">
+            회원가입
+          </Link>
+          <Link href="/reset-password" className="underline text-slate-500">
+            비밀번호 찾기
+          </Link>
+        </div>
       </div>
     </>
   );

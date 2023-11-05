@@ -20,6 +20,36 @@ export const SIGNIN_MODAL_CONTENTS: Partial<ModalCases> = {
     buttonText: "닫기",
   },
 };
+export const UPDATE_PASSWORD_MODAL_CONTENTS: Partial<ModalCases> = {
+  success: {
+    title: "UPDATE PASSWORD SUCCEED",
+    description: [
+      "비밀번호 초기화가 완료되었습니다",
+      "새로운 비밀번호로 로그인해주세요",
+    ],
+    buttonText: "닫기",
+  },
+  error: {
+    title: "UPDATE PASSWORD ERROR",
+    description: ["에러가 발생했습니다", "새로 고침 후 다시 시도해주세요"],
+    buttonText: "닫기",
+  },
+};
+export const RESET_PASSWORD_MODAL_CONTENTS: Partial<ModalCases> = {
+  success: {
+    title: "EMAIL SENT",
+    description: [
+      "입력한 이메일로 비밀번호 초기화 링크를 보냈습니다",
+      "메일의 링크를 클릭해주세요",
+    ],
+    buttonText: "닫기",
+  },
+  error: {
+    title: "RESET PASSWORD",
+    description: ["에러가 발생했습니다", "새로 고침 후 다시 시도해주세요"],
+    buttonText: "닫기",
+  },
+};
 
 export const SIGNUP_MODAL_CONTENTS: ModalCases = {
   success: {

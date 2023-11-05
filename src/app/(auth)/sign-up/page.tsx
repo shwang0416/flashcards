@@ -20,7 +20,6 @@ const Page = () => {
         password,
       });
       setModalContents(SIGNUP_MODAL_CONTENTS.success);
-      console.log(data);
     } catch (e) {
       console.error(e);
       setModalContents(SIGNUP_MODAL_CONTENTS.error);
