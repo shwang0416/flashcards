@@ -7,7 +7,7 @@ export type CreateCardProps = {
   cardId: string;
   questionTitle: string;
   questionContents: any;
-  answer: any;
+  answerContents: any;
 };
 
 const createCardAction = async ({
@@ -15,7 +15,7 @@ const createCardAction = async ({
   cardId,
   questionTitle,
   questionContents,
-  answer,
+  answerContents,
 }: CreateCardProps) => {
   try {
     const result = await supabase.from("Card").insert([
@@ -23,7 +23,7 @@ const createCardAction = async ({
         id: cardId,
         question_title: questionTitle,
         question_contents: questionContents,
-        answer_contents: answer,
+        answer_contents: answerContents,
       },
     ]);
     if (result.error) {
