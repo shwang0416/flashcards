@@ -2,7 +2,7 @@
 
 import Modal, { ModalContents } from "@/components/Modal";
 import { useState } from "react";
-import { RESET_PASSWORD_MODAL_CONTENTS } from "@/data/authContents";
+import { RESET_PASSWORD_MODAL_CONTENTS } from "@/data/modalContents";
 import { useRouter } from "next/navigation";
 import updatePasswordAction from "@/adaptor/serverActions/auth/updatePasswordAction";
 import PasswordForm from "./PasswordForm";

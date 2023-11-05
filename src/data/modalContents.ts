@@ -50,6 +50,21 @@ export const RESET_PASSWORD_MODAL_CONTENTS: Partial<ModalCases> = {
     buttonText: "닫기",
   },
 };
+export const CARDS_BOX_MODAL_CONTENTS: ModalCases = {
+  success: {
+    title: "EMAIL SENT",
+    description: [
+      "입력한 이메일로 비밀번호 초기화 링크를 보냈습니다",
+      "메일의 링크를 클릭해주세요",
+    ],
+    buttonText: "닫기",
+  },
+  error: {
+    title: "CARD NOTFOUND",
+    description: ["카드를 찾을 수 없습니다"],
+    buttonText: "닫기",
+  },
+};
 
 export const SIGNUP_MODAL_CONTENTS: ModalCases = {
   success: {

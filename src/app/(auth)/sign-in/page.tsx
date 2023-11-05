@@ -4,7 +4,7 @@ import Modal, { ModalContents } from "@/components/Modal";
 import Link from "next/link";
 import AuthForm from "../../../components/auth/AuthForm";
 import { useState } from "react";
-import { SIGNIN_MODAL_CONTENTS } from "@/data/authContents";
+import { SIGNIN_MODAL_CONTENTS } from "@/data/modalContents";
 import { useRouter } from "next/navigation";
 import signInAction from "@/adaptor/serverActions/auth/signinAction";
 

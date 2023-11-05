@@ -2,7 +2,7 @@
 
 import Modal, { ModalContents } from "@/components/Modal";
 import AuthForm from "@/components/auth/AuthForm";
-import { SIGNUP_MODAL_CONTENTS } from "@/data/authContents";
+import { SIGNUP_MODAL_CONTENTS } from "@/data/modalContents";
 import { createBrowserClient } from "@supabase/ssr";
 import { useState } from "react";
 
