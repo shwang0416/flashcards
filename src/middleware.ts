@@ -65,9 +65,6 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
   //   //   세션이 없는 유저 -> 로그인
 
-  if (!request.nextUrl.pathname.startsWith("/play-cards") && user) {
-    return NextResponse.redirect(new URL("/play-cards", request.url));
-  }
   if (!isAuthPage(request) && !user) {
     // console.log(`middleware: no user`);
     return NextResponse.redirect(new URL("/sign-in", request.url));
