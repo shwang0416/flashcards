@@ -7,7 +7,7 @@ type CardFormProps = {
 };
 
 type Props = {
-  id: string;
+  cardId: string;
   submitCallback: ({
     questionTitle,
     questionContents,
@@ -15,7 +15,7 @@ type Props = {
   }: CardFormProps) => Promise<void>;
 };
 
-const CardForm = ({ id, submitCallback }: Props) => {
+const CardForm = ({ cardId, submitCallback }: Props) => {
   const onSubmitHandler = async (formData: FormData) => {
     const questionTitle = formData.get("question_title") as string;
     const questionContents = formData.get("question_contents") as string;
