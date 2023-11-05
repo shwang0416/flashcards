@@ -10,7 +10,6 @@ const Page = () => {
   const [modalContents, setModalContents] = useState<ModalContents | null>();
 
   const formHandler = async ({ email }) => {
-    console.log(`email => ${email}`);
     const { data, error } = await resetPasswordAction({ email });
     if (error) {
       console.error(error);
