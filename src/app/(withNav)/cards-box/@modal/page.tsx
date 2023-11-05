@@ -5,20 +5,27 @@ import createCardAction from "@/adaptor/serverActions/createCardAction";
 import { generateId } from "@/util/idGenerator";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
+import CardDetail from "./CardDetail";
+import Modal from "@/components/Modal";
+import { CARDS_BOX_MODAL_CONTENTS } from "@/data/modalContents";
 
 const ModalPage = async ({
   searchParams,
 }: {
-  searchParams: { id: string };
+  searchParams: { id: string; edit: boolean };
 }) => {
-  const { id } = searchParams;
-  const user = await getUserAction();
-  if (!user) throw new Error("ERROR: no user");
+  const { id, edit } = searchParams;
+
+  if (!id) return null;
+  const { data: Cards, error } = await getCardDetailAction({ cardId: id });
+
+  if (error) throw new Error("ERROR: getCardDetailAction failed");
 
   const createCard = async ({
     questionTitle,
     questionContents,
-    answer,
+    answerContents,
   }: any) => {
     "use server";
 
@@ -32,18 +39,33 @@ const ModalPage = async ({
       userId: user!.id,
       questionTitle,
       questionContents,
-      answer,
+      answerContents,
     });
 
     revalidatePath("/cards-box");
     redirect("/cards-box");
   };
 
+  if (Cards.length === 0) return <Modal {...CARDS_BOX_MODAL_CONTENTS.error} />;
+  const {
+    question_title: questionTitle,
+    question_contents: questionContents,
+    answer_contents: answerContents,
+  } = Cards[0];
   return (
     <>
       {id && (
         <Dialog>
-          <CardForm cardId={id} submitCallback={createCard} />
+          {edit ? (
+            <CardForm cardId={id} submitCallback={createCard} />
+          ) : (
+            <CardDetail
+              cardId={id}
+              questionTitle={questionTitle}
+              questionContents={questionContents}
+              answerContents={answerContents}
+            />
+          )}
         </Dialog>
       )}
     </>
