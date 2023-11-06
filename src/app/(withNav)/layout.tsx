@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="">
+    <div className="flex flex-col h-full">
       <div className="flex justify-between bg-slate-600 p-2 rounded-xl ">
         <Link href="/" className="text-white hover:bg-pink-300 p-2 rounded-lg">
           <HomeIcon className="h-6 w-6 text-white" />
