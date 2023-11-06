@@ -11,6 +11,8 @@ import Modal from "@/components/Modal";
 import { CARDS_BOX_MODAL_CONTENTS } from "@/data/modalContents";
 import updateCardAction from "@/adaptor/serverActions/updateCardAction";
 
+export const dynamic = "force-dynamic";
+
 const ModalPage = async ({
   params,
   searchParams,
@@ -40,7 +42,12 @@ const ModalPage = async ({
       answerContents,
     });
 
-    revalidatePath("/cards-box");
+    // revalidatePath가 안된다
+    // revalidatePath(`/`);
+    // revalidatePath(`/cards-box/${id}?edit=true`);
+    // revalidatePath(`/cards-box/${id}`);
+    // revalidatePath("/cards-box");
+    revalidatePath(`/cards-box/@modal/${id}`, "page");
     redirect("/cards-box");
   };
 
