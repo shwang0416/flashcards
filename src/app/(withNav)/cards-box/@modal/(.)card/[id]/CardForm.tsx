@@ -58,7 +58,7 @@ const CardForm = ({
               id="question_contents"
               name="question_contents"
               placeholder="question_contents"
-              className="w-1/2 resize-none p-4 h-full rounded-xl bg-gray-50"
+              className="w-1/2 resize-none p-4 h-full rounded-xl bg-gray-50 outline-lime-300"
             >
               {questionContents}
             </textarea>
@@ -71,7 +71,7 @@ const CardForm = ({
               id="answer"
               name="answer"
               placeholder="answer"
-              className="w-1/2 resize-none p-4 h-full rounded-xl bg-gray-50"
+              className="w-1/2 resize-none p-4 h-full rounded-xl bg-gray-50 outline-lime-300"
             >
               {answerContents}
             </textarea>
