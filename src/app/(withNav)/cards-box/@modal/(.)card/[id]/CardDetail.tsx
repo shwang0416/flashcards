@@ -38,7 +38,7 @@ const CardDetail = ({
 
         <Link
           href={{
-            pathname: cardId,
+            pathname: `/cards-box/card/${cardId}`,
             query: { edit: true },
           }}
           className="font-semibold text-[24px] text-center bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
