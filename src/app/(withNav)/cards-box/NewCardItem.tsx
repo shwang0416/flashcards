@@ -7,9 +7,10 @@ const NewCardItem = () => {
   return (
     <>
       <Link
-        href={{
-          query: { id: "create-new-card" },
-        }}
+        // href={{
+        //   query: { id: "create-new-card" },
+        // }}
+        href={`/cards-box/create-new-card`}
         className="rounded-xl bg-white w-60 h-60 flex flex-col justify-center items-center p-6 cursor-pointer hover:bg-white hover:shadow-xl hover:shadow-gray-300"
       >
         <PlusIcon className="w-8 h-8 text-gray-600 stroke-3" />

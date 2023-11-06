@@ -3,7 +3,7 @@
 type CardFormProps = {
   questionTitle: string;
   questionContents: any;
-  answer: any;
+  answerContents: any;
 };
 
 type Props = {
@@ -11,17 +11,23 @@ type Props = {
   submitCallback: ({
     questionTitle,
     questionContents,
-    answer,
+    answerContents,
   }: CardFormProps) => Promise<void>;
-};
+} & Partial<CardFormProps>;
 
-const CardForm = ({ cardId, submitCallback }: Props) => {
+const CardForm = ({
+  cardId,
+  questionTitle,
+  questionContents,
+  answerContents,
+  submitCallback,
+}: Props) => {
   const onSubmitHandler = async (formData: FormData) => {
     const questionTitle = formData.get("question_title") as string;
     const questionContents = formData.get("question_contents") as string;
-    const answer = formData.get("answer") as string;
+    const answerContents = formData.get("answer") as string;
 
-    if (!questionTitle || !questionContents || !answer) {
+    if (!questionTitle || !questionContents || !answerContents) {
       alert("내용을 모두 입력해주세요");
       return;
     }
@@ -31,7 +37,7 @@ const CardForm = ({ cardId, submitCallback }: Props) => {
     await submitCallback({
       questionTitle,
       questionContents,
-      answer,
+      answerContents,
     });
   };
 
@@ -44,6 +50,7 @@ const CardForm = ({ cardId, submitCallback }: Props) => {
           name="question_title"
           placeholder="question_title"
           className="w-full text-[24px] p-4 rounded-xl"
+          defaultValue={questionTitle}
         />
         <div className="flex flex-col flex-grow gap-y-2">
           <div className="w-full text-lg h-1/2 flex flex-row gap-2">
@@ -52,7 +59,9 @@ const CardForm = ({ cardId, submitCallback }: Props) => {
               name="question_contents"
               placeholder="question_contents"
               className="w-1/2 resize-none p-4 h-full rounded-xl bg-gray-50"
-            />
+            >
+              {questionContents}
+            </textarea>
             <div className="w-1/2 p-4 h-full rounded-xl bg-white">
               question contents (markdown)
             </div>
@@ -63,7 +72,9 @@ const CardForm = ({ cardId, submitCallback }: Props) => {
               name="answer"
               placeholder="answer"
               className="w-1/2 resize-none p-4 h-full rounded-xl bg-gray-50"
-            />
+            >
+              {answerContents}
+            </textarea>
             <div className="w-1/2 p-4 h-full rounded-xl bg-white">
               answer contents (markdown)
             </div>
