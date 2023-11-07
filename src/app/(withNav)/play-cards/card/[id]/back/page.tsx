@@ -1,0 +1,54 @@
+import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
+import AnswerForm from "../front/AnswerForm";
+import getReviewNoteById from "@/adaptor/serverActions/getReviewNoteById";
+
+const Page = async ({
+  params,
+  searchParams,
+}: {
+  params: { id: string };
+  searchParams: { r: string };
+}) => {
+  const { id } = params;
+  const { r } = searchParams;
+  if (!id || !r) throw new Error("ERROR: card Id or review id is missing");
+
+  const { data: Cards, error } = await getCardDetailAction({ cardId: id });
+  const ReviewNote = await getReviewNoteById({ noteId: r });
+
+  if (!ReviewNote) throw new Error("no answer data in review notes");
+
+  const { answer_tried: answerTried } = ReviewNote;
+
+  if (!Cards) throw new Error("ERROR: could not find the card by the id");
+
+  const {
+    question_contents: questionContents,
+    question_title: questionTitle,
+    answer_contents: answerContents,
+  } = Cards[0];
+
+  return (
+    <div className="flex flex-col pt-4 gap-4 flex-grow">
+      <div className=" w-full h-1/2 flex flex-col gap-4">
+        <div className="p-4 bg-white rounded-xl">
+          <h2 className="text-[50px] font-semibold">{questionTitle}</h2>
+        </div>
+        <div className="flex flex-row gap-4 flex-grow text-xl">
+          <div className="flex-grow bg-white rounded-xl p-4">
+            {questionContents}
+          </div>
+          <div className="flex-grow bg-white rounded-xl p-4">
+            {answerContents}
+          </div>
+          <div className="flex-grow bg-white rounded-xl p-4">{answerTried}</div>
+        </div>
+      </div>
+
+      {/* props를 잘 넘겨서 정답이랑 오답노트 둘 다 입력받을 수 있도록 컴포넌트를 재사용하자 */}
+      <AnswerForm cardId={id} />
+    </div>
+  );
+};
+
+export default Page;
