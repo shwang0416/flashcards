@@ -4,7 +4,10 @@ import getUserAction from "@/adaptor/serverActions/auth/getUserAction";
 import createReviewAction from "@/adaptor/serverActions/createReviewAction";
 import { generateId } from "@/util/idGenerator";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { marked } from "marked";
+import debounce from "@/util/debounce";
+import parse from "html-react-parser";
 
 type AnswerFormProps = {
   cardId: string;
@@ -13,11 +16,21 @@ type AnswerFormProps = {
 const AnswerForm = ({ cardId }: AnswerFormProps) => {
   const router = useRouter();
   const [noteId] = useState(generateId(10));
+  const [markedContents, setMarkedContents] = useState<string>();
 
   useEffect(() => {
     // Prefetch the dashboard page
     router.prefetch(`/play-cards/card/${cardId}/back?r=${noteId}`);
   }, [cardId, noteId, router]);
+
+  const textareaOnChangeHandler = useMemo(
+    () =>
+      debounce((event: any) => {
+        event.preventDefault();
+        setMarkedContents(marked(event.target.value));
+      }, 100),
+    [],
+  );
 
   const formAction = async (formData: FormData) => {
     const answerContents = formData.get("answer_contents") as string;
@@ -57,10 +70,12 @@ const AnswerForm = ({ cardId }: AnswerFormProps) => {
             name="answer_contents"
             id="answer_contents"
             placeholder="여기에 정답을 입력하세요"
+            onChange={textareaOnChangeHandler}
           />
         </div>
         <div className="p-4 bg-white rounded-xl">
-          <h2 className="text-[30px] font-semibold">answer markdown</h2>
+          {markedContents && parse(markedContents)}
+          <h2 className="text-[30px] font-semibold"></h2>
         </div>
       </div>
     </form>

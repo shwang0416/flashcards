@@ -29,3 +29,11 @@ body {
 button {
   @apply font-semibold bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white;
 }
+
+h1 {
+  @apply text-6xl;
+}
+
+h2 {
+  @apply text-4xl;
+}
