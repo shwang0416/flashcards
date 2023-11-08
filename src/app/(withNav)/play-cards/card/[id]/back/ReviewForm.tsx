@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 type ReviewFormProps = {
   noteId: string;
+  nextCardId: string;
 };
 
 const getNextPath = (nextCardId: string) => {
@@ -13,9 +14,8 @@ const getNextPath = (nextCardId: string) => {
   return "/play-cards/end";
 };
 
-const ReviewForm = ({ noteId }: ReviewFormProps) => {
+const ReviewForm = ({ noteId, nextCardId }: ReviewFormProps) => {
   const router = useRouter();
-  const nextCardId = "mock_id";
   const nextPath = getNextPath(nextCardId);
 
   useEffect(() => {

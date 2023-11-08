@@ -1,6 +1,7 @@
 import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
 import ReviewForm from "../back/ReviewForm";
 import getReviewNoteById from "@/adaptor/serverActions/getReviewNoteById";
+import getNextCardIdFromCookie from "@/adaptor/serverActions/getNextCardIdFromCookie";
 
 const Page = async ({
   params,
@@ -22,6 +23,7 @@ const Page = async ({
 
   if (!Cards) throw new Error("ERROR: could not find the card by the id");
 
+  const nextCardId = getNextCardIdFromCookie(id);
   const {
     question_contents: questionContents,
     question_title: questionTitle,
@@ -46,7 +48,7 @@ const Page = async ({
       </div>
 
       {/* props를 잘 넘겨서 정답이랑 오답노트 둘 다 입력받을 수 있도록 컴포넌트를 재사용하자 */}
-      <ReviewForm noteId={r} />
+      <ReviewForm noteId={r} nextCardId={nextCardId} />
     </div>
   );
 };
