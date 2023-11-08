@@ -3,28 +3,22 @@
 import supabase from "@/lib/supabase/supabase-service-role-client";
 
 export type updateReviewProps = {
-  cardId: string;
-  questionTitle: string;
-  questionContents: any;
-  answerContents: any;
+  noteId: string;
+  reviewContents: string;
 };
 
 const updateReviewAction = async ({
-  cardId,
-  questionTitle,
-  questionContents,
-  answerContents,
+  noteId,
+  reviewContents,
 }: updateReviewProps) => {
   const { error } = await supabase
-    .from("Card")
+    .from("ReviewNote")
     .update([
       {
-        question_title: questionTitle,
-        question_contents: questionContents,
-        answer_contents: answerContents,
+        review_contents: reviewContents,
       },
     ])
-    .eq("id", cardId)
+    .eq("id", noteId)
     .select();
   if (error) {
     console.log(error);

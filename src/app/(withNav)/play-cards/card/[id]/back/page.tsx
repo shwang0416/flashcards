@@ -1,5 +1,5 @@
 import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
-import AnswerForm from "../front/AnswerForm";
+import ReviewForm from "../back/ReviewForm";
 import getReviewNoteById from "@/adaptor/serverActions/getReviewNoteById";
 
 const Page = async ({
@@ -11,7 +11,7 @@ const Page = async ({
 }) => {
   const { id } = params;
   const { r } = searchParams;
-  if (!id || !r) throw new Error("ERROR: card Id or review id is missing");
+  if (!id || !r) throw new Error("ERROR: card Id or note id is missing");
 
   const { data: Cards, error } = await getCardDetailAction({ cardId: id });
   const ReviewNote = await getReviewNoteById({ noteId: r });
@@ -46,7 +46,7 @@ const Page = async ({
       </div>
 
       {/* props를 잘 넘겨서 정답이랑 오답노트 둘 다 입력받을 수 있도록 컴포넌트를 재사용하자 */}
-      <AnswerForm cardId={id} />
+      <ReviewForm noteId={r} />
     </div>
   );
 };
