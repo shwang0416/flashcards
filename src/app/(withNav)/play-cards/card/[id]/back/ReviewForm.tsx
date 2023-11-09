@@ -1,6 +1,7 @@
 "use client";
 
 import updateReviewAction from "@/adaptor/serverActions/updateReviewAction";
+import MarkdownTextArea from "@/components/MarkdownTextArea";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -49,19 +50,12 @@ const ReviewForm = ({ noteId, nextCardId }: ReviewFormProps) => {
         value={"다음으로"}
         className=" font-semibold text-[24px] bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
       />
-      <div className=" w-full flex-grow grid grid-cols-2 gap-4">
-        <div className="p-4 bg-gray-50 rounded-xl">
-          <textarea
-            className="resize-none p-4 w-full h-full rounded-xl bg-transparent outline-none"
-            name="review_contents"
-            id="review_contents"
-            placeholder="정답을 맞추셨나요? 이번에 작성한 답에서 보완할 점은 무엇인가요?"
-          />
-        </div>
-        <div className="p-4 bg-white rounded-xl">
-          <h2 className="text-[30px] font-semibold">answer markdown</h2>
-        </div>
-      </div>
+
+      <MarkdownTextArea
+        name="review_contents"
+        id="review_contents"
+        placeholder="정답을 맞추셨나요? 이번에 작성한 답에서 보완할 점은 무엇인가요?"
+      />
     </form>
   );
 };

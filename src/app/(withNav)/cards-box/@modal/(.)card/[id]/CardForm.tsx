@@ -1,5 +1,7 @@
 "use client";
 
+import MarkdownTextArea from "@/components/MarkdownTextArea";
+
 type CardFormProps = {
   questionTitle: string;
   questionContents: any;
@@ -53,32 +55,23 @@ const CardForm = ({
           defaultValue={questionTitle}
         />
         <div className="flex flex-col flex-grow gap-y-2">
-          <div className="w-full text-lg h-1/2 flex flex-row gap-2">
-            <textarea
-              id="question_contents"
-              name="question_contents"
-              placeholder="question_contents"
-              className="w-1/2 resize-none p-4 h-full rounded-xl bg-gray-50 outline-lime-300"
-            >
-              {questionContents}
-            </textarea>
-            <div className="w-1/2 p-4 h-full rounded-xl bg-white">
-              question contents (markdown)
-            </div>
-          </div>
-          <div className="w-full text-lg h-1/2 flex flex-row gap-2">
-            <textarea
-              id="answer"
-              name="answer"
-              placeholder="answer"
-              className="w-1/2 resize-none p-4 h-full rounded-xl bg-gray-50 outline-lime-300"
-            >
-              {answerContents}
-            </textarea>
-            <div className="w-1/2 p-4 h-full rounded-xl bg-white">
-              answer contents (markdown)
-            </div>
-          </div>
+          <MarkdownTextArea
+            id="question_contents"
+            name="question_contents"
+            placeholder="question_contents"
+            gap="gap-2"
+          >
+            {questionContents}
+          </MarkdownTextArea>
+
+          <MarkdownTextArea
+            id="answer"
+            name="answer"
+            placeholder="answer"
+            gap="gap-2"
+          >
+            {answerContents}
+          </MarkdownTextArea>
         </div>
 
         <input
