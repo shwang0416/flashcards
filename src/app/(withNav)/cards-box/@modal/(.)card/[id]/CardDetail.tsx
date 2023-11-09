@@ -1,10 +1,12 @@
+import { marked } from "marked";
+import parse from "html-react-parser";
 import Link from "next/link";
 
 type CardDetailProps = {
   cardId: string;
   questionTitle: string;
-  questionContents: JSON;
-  answerContents: JSON;
+  questionContents: string;
+  answerContents: string;
 };
 
 const CardDetail = ({
@@ -26,12 +28,14 @@ const CardDetail = ({
         <div className="flex flex-col flex-grow gap-y-2">
           <div className="w-full text-lg h-1/2 flex flex-row gap-2">
             <div className="w-full p-4 h-full rounded-xl bg-white">
-              {JSON.stringify(questionContents)}
+              {questionContents &&
+                parse(marked(questionContents, { breaks: true }))}
             </div>
           </div>
           <div className="w-full text-lg h-1/2 flex flex-row gap-2">
             <div className="w-full p-4 h-full rounded-xl bg-white">
-              {JSON.stringify(answerContents)}
+              {answerContents &&
+                parse(marked(answerContents, { breaks: true }))}
             </div>
           </div>
         </div>
