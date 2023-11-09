@@ -23,7 +23,7 @@ const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
       () =>
         debounce((event: any) => {
           event.preventDefault();
-          setMarkedContents(marked(event.target.value));
+          setMarkedContents(marked(event.target.value, { breaks: true }));
         }, 100),
       [],
     );
