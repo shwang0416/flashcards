@@ -11,13 +11,15 @@ import {
 
 interface MarkdownTextAreaProps
   extends InputHTMLAttributes<HTMLTextAreaElement> {
-  children?: ReactNode;
+  children?: string;
   gap?: string;
 }
 
 const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
   function MyInput({ children, gap = "gap-4", ...props }, ref) {
-    const [markedContents, setMarkedContents] = useState<string>();
+    const [markedContents, setMarkedContents] = useState<string>(
+      children ? marked(children, { breaks: true }) : "",
+    );
 
     const textareaOnChangeHandler = useMemo(
       () =>
