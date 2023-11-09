@@ -6,6 +6,7 @@ import {
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import LogoutForm from "@/components/auth/LogoutForm";
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -39,7 +40,12 @@ export default function RootLayout({
           </Link>
         </div>
       </div>
-      {children}
+
+      <Suspense
+        fallback={<div className="w-full h-full bg-rose-500">loading ... </div>}
+      >
+        {children}
+      </Suspense>
     </div>
   );
 }
