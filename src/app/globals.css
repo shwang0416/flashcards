@@ -11,17 +11,17 @@ button {
 }
 
 h1 {
-  @apply text-3xl;
+  @apply text-3xl leading-[3.5rem];
 }
 
 h2 {
-  @apply text-2xl;
+  @apply text-2xl leading-[2.5rem];
 }
 
 h3 {
-  @apply text-xl;
+  @apply text-xl leading-[2rem];
 }
 
 code {
-  @apply bg-pink-100 p-1 my-8 rounded-lg border-2 border-pink-300;
+  @apply bg-pink-100 p-1 leading-[4rem] rounded-lg border-2 border-pink-300;
 }

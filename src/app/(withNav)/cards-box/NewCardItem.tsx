@@ -11,7 +11,7 @@ const NewCardItem = () => {
         //   query: { id: "create-new-card" },
         // }}
         href={`/cards-box/card/create-new-card`}
-        className="rounded-xl bg-white w-60 h-60 flex flex-col justify-center items-center p-6 cursor-pointer hover:bg-white hover:shadow-xl hover:shadow-gray-300"
+        className="rounded-xl bg-white h-60 flex flex-col justify-center items-center p-6 cursor-pointer hover:bg-white hover:shadow-xl hover:shadow-gray-300"
       >
         <PlusIcon className="w-8 h-8 text-gray-600 stroke-3" />
       </Link>

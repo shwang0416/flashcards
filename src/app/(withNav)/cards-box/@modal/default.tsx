@@ -1,6 +1,6 @@
 const Page = () => {
   console.log("@modal default");
-  return <div>modal default</div>;
+  return null;
 };
 
 export default Page;

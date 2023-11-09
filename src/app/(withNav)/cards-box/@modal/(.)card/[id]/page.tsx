@@ -10,6 +10,8 @@ import CardDetail from "./CardDetail";
 import Modal from "@/components/Modal";
 import { CARDS_BOX_MODAL_CONTENTS } from "@/data/modalContents";
 import updateCardAction from "@/adaptor/serverActions/updateCardAction";
+import { Suspense } from "react";
+import LoadingSpinner from "@/components/loading/LoadingSpinner";
 
 export const dynamic = "force-dynamic";
 
@@ -90,22 +92,24 @@ const ModalPage = async ({
     <>
       {id && (
         <Dialog>
-          {edit ? (
-            <CardForm
-              cardId={id}
-              submitCallback={updateCard}
-              questionTitle={questionTitle}
-              questionContents={questionContents}
-              answerContents={answerContents}
-            />
-          ) : (
-            <CardDetail
-              cardId={id}
-              questionTitle={questionTitle}
-              questionContents={questionContents}
-              answerContents={answerContents}
-            />
-          )}
+          <Suspense fallback={<LoadingSpinner />}>
+            {edit ? (
+              <CardForm
+                cardId={id}
+                submitCallback={updateCard}
+                questionTitle={questionTitle}
+                questionContents={questionContents}
+                answerContents={answerContents}
+              />
+            ) : (
+              <CardDetail
+                cardId={id}
+                questionTitle={questionTitle}
+                questionContents={questionContents}
+                answerContents={answerContents}
+              />
+            )}
+          </Suspense>
         </Dialog>
       )}
     </>
