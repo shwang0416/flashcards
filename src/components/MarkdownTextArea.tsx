@@ -32,9 +32,9 @@ const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
 
     return (
       <div className={`w-full flex-grow grid grid-cols-2 ${gap}`}>
-        <div className="p-4 bg-gray-50 rounded-xl">
+        <div className="p-4 bg-gray-50 rounded-xl overflow-auto">
           <textarea
-            className="resize-none p-4 w-full h-full rounded-xl bg-transparent outline-none"
+            className="resize-none p-4 w-full h-full rounded-xl bg-transparent outline-none overflow-hidden"
             ref={ref}
             {...props}
             onChange={textareaOnChangeHandler}
@@ -42,7 +42,7 @@ const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
             {children}
           </textarea>
         </div>
-        <div className="p-4 bg-white rounded-xl">
+        <div className="p-4 bg-white rounded-xl overflow-auto">
           {markedContents && parse(markedContents)}
           <h2 className="text-[30px] font-semibold"></h2>
         </div>
