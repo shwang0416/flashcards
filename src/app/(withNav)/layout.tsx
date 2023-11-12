@@ -38,13 +38,10 @@ export default function RootLayout({
           <span className="mr-1 inline">Cards Box</span>
           <ArchiveBoxIcon className="h-6 w-6 text-white inline" />
         </Link>
-        <Link
-          href="/"
-          className="flex gap-x-1 text-white hover:bg-pink-300 p-2 rounded-lg flex-row items-center"
-        >
+        <div className="flex gap-x-1 text-white hover:bg-pink-300 p-2 rounded-lg flex-row items-center">
           <LogoutForm />
           <ArrowRightOnRectangleIcon className="h-6 w-6 text-white inline" />
-        </Link>
+        </div>
       </div>
 
       <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
