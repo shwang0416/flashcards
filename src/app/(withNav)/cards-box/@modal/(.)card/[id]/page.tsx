@@ -90,28 +90,26 @@ const ModalPage = async ({
   } = Cards[0];
   return (
     <>
-      {id && (
-        <Dialog>
-          <Suspense fallback={<LoadingSpinner />}>
-            {edit ? (
-              <CardForm
-                cardId={id}
-                submitCallback={updateCard}
-                questionTitle={questionTitle}
-                questionContents={questionContents}
-                answerContents={answerContents}
-              />
-            ) : (
-              <CardDetail
-                cardId={id}
-                questionTitle={questionTitle}
-                questionContents={questionContents}
-                answerContents={answerContents}
-              />
-            )}
-          </Suspense>
-        </Dialog>
-      )}
+      <Dialog>
+        <Suspense fallback={<LoadingSpinner />}>
+          {edit ? (
+            <CardForm
+              cardId={id}
+              submitCallback={updateCard}
+              questionTitle={questionTitle}
+              questionContents={questionContents}
+              answerContents={answerContents}
+            />
+          ) : (
+            <CardDetail
+              cardId={id}
+              questionTitle={questionTitle}
+              questionContents={questionContents}
+              answerContents={answerContents}
+            />
+          )}
+        </Suspense>
+      </Dialog>
     </>
   );
 };
