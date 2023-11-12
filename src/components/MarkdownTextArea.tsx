@@ -31,7 +31,7 @@ const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
     );
 
     return (
-      <div className={`w-full flex-grow grid grid-cols-2 ${gap}`}>
+      <div className={`w-full h-full flex-grow grid grid-cols-2 ${gap}`}>
         <div className="p-4 bg-gray-50 rounded-xl overflow-auto">
           <textarea
             className="resize-none p-4 w-full h-full rounded-xl bg-transparent outline-none overflow-hidden"
