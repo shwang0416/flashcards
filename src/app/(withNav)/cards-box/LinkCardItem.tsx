@@ -9,7 +9,7 @@ type CardItemProps = {
   date: Date;
   difficultyLvl: number;
 };
-const CardItem = ({ id, title, date, difficultyLvl }: CardItemProps) => {
+const LinkCardItem = ({ id, title, date, difficultyLvl }: CardItemProps) => {
   return (
     <Link
       href={`/cards-box/card/${id}`}
@@ -28,4 +28,4 @@ const CardItem = ({ id, title, date, difficultyLvl }: CardItemProps) => {
   );
 };
 
-export default CardItem;
+export default LinkCardItem;

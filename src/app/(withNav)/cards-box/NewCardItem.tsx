@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-const NewCardItem = () => {
+const NewCardItem = ({ disabled }: { disabled?: boolean }) => {
   return (
     <>
       <Link
@@ -11,9 +11,17 @@ const NewCardItem = () => {
         //   query: { id: "create-new-card" },
         // }}
         href={`/cards-box/card/create-new-card`}
-        className="rounded-xl bg-white h-60 flex flex-col justify-center items-center p-6 cursor-pointer hover:bg-white hover:shadow-xl hover:shadow-gray-300"
+        className={`rounded-xl ${
+          disabled
+            ? "bg-gray-100"
+            : "bg-white hover:bg-white hover:shadow-xl cursor-pointer"
+        } h-60 flex flex-col justify-center items-center p-6  hover:shadow-gray-300`}
       >
-        <PlusIcon className="w-8 h-8 text-gray-600 stroke-3" />
+        <PlusIcon
+          className={`w-8 h-8  stroke-3 ${
+            disabled ? "text-gray-200" : "text-gray-600"
+          }`}
+        />
       </Link>
     </>
   );
