@@ -34,7 +34,7 @@ const Page = async ({
     <div className="flex flex-col pt-4 gap-4 flex-grow">
       <div className=" w-full h-1/2 flex flex-col gap-4">
         <div className="p-4 bg-white rounded-xl">
-          <h2 className="text-[50px] font-semibold">{questionTitle}</h2>
+          <h4 className="h-24 text-4xl font-semibold">{questionTitle}</h4>
         </div>
         <div className="flex flex-row gap-4 flex-grow text-xl">
           <div className="flex-grow bg-white rounded-xl p-4">
