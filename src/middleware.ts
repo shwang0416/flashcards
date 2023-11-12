@@ -60,15 +60,12 @@ export async function middleware(request: NextRequest) {
       },
     },
   );
-
-  await supabase.auth.getSession();
-
+  //  세션이 없는 유저 -> 로그인
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  //   //   세션이 없는 유저 -> 로그인
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  if (!isAuthPage(request) && !user) {
+  if (!isAuthPage(request) && !session) {
     // console.log(`middleware: no user`);
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
