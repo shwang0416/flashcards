@@ -2,6 +2,7 @@ import {
   PlayIcon,
   ArrowRightOnRectangleIcon,
   ArchiveBoxIcon,
+  CalendarDaysIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import LogoutForm from "@/components/auth/LogoutForm";
@@ -16,6 +17,13 @@ export default function RootLayout({
   return (
     <div className="flex flex-col h-full">
       <div className="flex justify-between bg-slate-600 p-2 rounded-xl ">
+        <Link
+          href="/daily-check-in"
+          className="text-white hover:bg-pink-300 p-2 rounded-lg"
+        >
+          <span className="mr-1 inline">Daily Check in</span>
+          <CalendarDaysIcon className="h-6 w-6 text-white inline" />
+        </Link>
         <Link
           href="/play-cards"
           className="text-white hover:bg-pink-300 p-2 rounded-lg"
