@@ -23,5 +23,13 @@ h3 {
 }
 
 code {
-  @apply bg-pink-100 p-1 leading-[4rem] rounded-lg border-2 border-pink-300;
+  @apply bg-yellow-50 p-1 rounded-lg border border-gray-300;
+}
+
+pre {
+  @apply bg-pink-50 p-0 leading-[4rem] rounded-lg border border-gray-300;
+}
+
+pre code {
+  @apply bg-transparent border-transparent;
 }
