@@ -3,9 +3,6 @@ import Link from "next/link";
 
 const Page = async () => {
   const firstCardIdCookie = cookies().get("first-card-id")?.value;
-  if (!firstCardIdCookie) {
-    throw new Error("쿠키에 첫번째 카드정보가 없음");
-  }
   return (
     <div className="flex flex-col pt-4 gap-4 flex-grow">
       <div className="p-4 py-10 bg-white rounded-xl">
