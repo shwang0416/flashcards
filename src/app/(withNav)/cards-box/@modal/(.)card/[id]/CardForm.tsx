@@ -50,7 +50,7 @@ const CardForm = ({
           type="text"
           id="question_title"
           name="question_title"
-          placeholder="question_title"
+          placeholder="문제 제목을 입력하세요"
           className="w-full text-[24px] p-4 rounded-xl"
           defaultValue={questionTitle}
         />
@@ -58,7 +58,7 @@ const CardForm = ({
           <MarkdownTextArea
             id="question_contents"
             name="question_contents"
-            placeholder="question_contents"
+            placeholder="문제 내용을 입력하세요"
             gap="gap-2"
           >
             {questionContents}
@@ -67,7 +67,7 @@ const CardForm = ({
           <MarkdownTextArea
             id="answer"
             name="answer"
-            placeholder="answer"
+            placeholder="정답을 입력하세요"
             gap="gap-2"
           >
             {answerContents}
