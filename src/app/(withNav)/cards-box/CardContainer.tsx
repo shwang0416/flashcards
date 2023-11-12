@@ -1,7 +1,7 @@
 "use client";
 
 import CardItemSkeleton from "@/components/loading/CardItemSkeleton";
-import { Suspense, useState } from "react";
+import { FormEvent, Suspense, useState } from "react";
 import DeleteCardItem from "./DeleteCardItem";
 import LinkCardItem from "./LinkCardItem";
 import NewCardItem from "./NewCardItem";
@@ -25,9 +25,35 @@ type CardContainerProps = {
   cards: Card[];
   deleteMode: boolean;
 };
+
+const data = {
+  manage: {
+    title: "Cards Box",
+    description: "모아둔 카드를 확인하세요",
+    changeModeText: "카드 삭제",
+  },
+  delete: {
+    title: "Delete Card",
+    description: "삭제할 카드를 선택하세요",
+    changeModeText: "카드 관리",
+  },
+};
 const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCardSelected, setIsCardSelected] = useState(false);
+  const { title, description, changeModeText } =
+    data[deleteMode ? "delete" : "manage"];
+
+  const handleChange = (event: FormEvent<HTMLFormElement>) => {
+    const form = event.currentTarget;
+    if (!form) return;
+    const formData = new FormData(form);
+    const isEmpty = formData.entries().next().done;
+
+    setIsCardSelected(!isEmpty);
+  };
+
   const onDeleteHandler = async (formData: FormData) => {
     const checkedCardIs = Array.from(formData.entries()).map((pair) => {
       const key = pair[0];
@@ -38,9 +64,11 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
     });
 
     if (!checkedCardIs || checkedCardIs.length === 0) {
-      return alert("삭제할 카드를 선택해주세요");
+      alert("삭제할 카드를 선택해주세요");
+      return;
     }
-    confirm("정말로 삭제하시겠어요? 삭제한 카드는 다시 이용할 수 없어요.");
+    if (!confirm("정말로 삭제하시겠어요? 삭제한 카드는 다시 이용할 수 없어요."))
+      return;
 
     await deleteCardsAction(checkedCardIs as string[]);
 
@@ -52,10 +80,8 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
     <>
       <div className="flex flex-row justify-between rounded-xl bg-white w-full h-60">
         <div className=" flex flex-col justify-end p-6">
-          <h2 className="text-[60px] font-semibold mb-6">
-            {deleteMode ? "Delete Card" : "Cards Box"}
-          </h2>
-          <p className="text-xl ml-2">삭제할 카드를 선택하세요</p>
+          <h2 className="text-[60px] font-semibold mb-6">{title}</h2>
+          <p className="text-xl ml-2">{description}</p>
         </div>
 
         <div className="flex flex-col items-end m-4 relative">
@@ -76,7 +102,7 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
                   className="hover:bg-gray-200 border border-transparent group hover:border-gray-300 text-center w-full rounded-lg flex gap-x-2 items-center justify-center"
                 >
                   <span className="mt-1 group-hover:text-pink-500">
-                    카드 관리
+                    {changeModeText}
                   </span>
                   <ArchiveBoxIcon className="h-6 w-6 text-slate-500 group-hover:text-pink-500" />
                 </Link>
@@ -88,7 +114,7 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
                   className="hover:bg-gray-200 border border-transparent group hover:border-gray-300 text-center w-full rounded-lg flex gap-x-2 items-center justify-center"
                 >
                   <span className="mt-1 group-hover:text-pink-500">
-                    카드 삭제
+                    {changeModeText}
                   </span>
                   <TrashIcon className="w-6 h-6 text-slate-500 group-hover:text-pink-500" />
                 </Link>
@@ -99,7 +125,11 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
       </div>
       <div className="flex flex-col h-full">
         {deleteMode ? (
-          <form action={onDeleteHandler} className="flex flex-col gap-4 h-full">
+          <form
+            action={onDeleteHandler}
+            onChange={handleChange}
+            className="flex flex-col gap-4 h-full"
+          >
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
               <NewCardItem disabled={true} />
               <Suspense fallback={<CardItemSkeleton />}>
@@ -115,10 +145,10 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
               </Suspense>
             </div>
             <div className="flex items-end flex-grow">
-              {/*FIXME: 하나라도 체크되어야 버튼 활성화 */}
               <button
                 type="submit"
-                className="w-full font-semibold text-[24px] text-center bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
+                disabled={!isCardSelected}
+                className={`w-full font-semibold text-[24px] text-center disabled:bg-slate-300 bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white`}
               >
                 삭제하기
               </button>
