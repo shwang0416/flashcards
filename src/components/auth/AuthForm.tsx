@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 type AuthFormProps = {
   authCallback: ({
     email,
@@ -20,21 +22,48 @@ const AuthForm = ({ authCallback, buttonText }: AuthFormProps) => {
     await authCallback({ email, password });
   };
   return (
-    <div className="div">
-      <form action={formHandler}>
-        <div className="">
-          <label htmlFor="email">email</label>
-          <input id="email" name="email" type="text" />
+    <div className="w-80">
+      <form action={formHandler} className="flex flex-col gap-16">
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-1">
+            <label htmlFor="email" className="text-gray-500">
+              이메일
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="text"
+              className="h-12 rounded-lg"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="password"
+              className="text-gray-500 flex flex-row justify-between"
+            >
+              <span className="">비밀번호</span>
+
+              <Link
+                href="/reset-password"
+                className="underline text-gray-400 text-sm leading-loose self-end"
+              >
+                비밀번호 찾기
+              </Link>
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="text"
+              className="h-12 rounded-lg"
+            />
+          </div>
         </div>
-        <div className="">
-          <label htmlFor="password">password</label>
-          <input id="password" name="password" type="text" />
-        </div>
+
         <div className="">
           <input
             type="submit"
             value={buttonText}
-            className="font-semibold bg-pink-300 p-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
+            className="font-semibold w-full bg-pink-300 p-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
           />
         </div>
       </form>

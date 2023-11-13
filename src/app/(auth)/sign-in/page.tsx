@@ -31,15 +31,13 @@ const Page = () => {
           buttonCallback={() => setModalContents(null)}
         />
       )}
-      <div className="flex flex-col gap-10">
-        <h2 className="text-xl">로그인 페이지</h2>
-        <AuthForm authCallback={formHandler} buttonText="Sign in" />
+      <div className="flex flex-col justify-center items-center h-full gap-10">
+        <h2 className="text-xl">Welcome Back</h2>
+        <AuthForm authCallback={formHandler} buttonText="로그인" />
         <div className="flex flex-row gap-x-2">
-          <Link href="/sign-up" className="underline text-slate-500">
-            회원가입
-          </Link>
-          <Link href="/reset-password" className="underline text-slate-500">
-            비밀번호 찾기
+          <span>계정이 없으신가요? </span>
+          <Link href="/sign-up" className="underline text-pink-500">
+            가입하기
           </Link>
         </div>
       </div>

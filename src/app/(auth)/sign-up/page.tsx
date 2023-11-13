@@ -4,6 +4,7 @@ import Modal, { ModalContents } from "@/components/Modal";
 import AuthForm from "@/components/auth/AuthForm";
 import { SIGNUP_MODAL_CONTENTS } from "@/data/modalContents";
 import { createBrowserClient } from "@supabase/ssr";
+import Link from "next/link";
 import { useState } from "react";
 
 const Page = () => {
@@ -34,9 +35,15 @@ const Page = () => {
           buttonCallback={() => setModalContents(null)}
         />
       )}
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col justify-center items-center h-full gap-10">
         <h2 className="text-xl">회원가입 페이지</h2>
-        <AuthForm authCallback={formHandler} buttonText="Sign up" />
+        <AuthForm authCallback={formHandler} buttonText="회원 가입" />
+        <div className="flex flex-row gap-x-2">
+          <span>이미 계정이 있으신가요? </span>
+          <Link href="/sign-in" className="underline text-pink-500">
+            로그인하기
+          </Link>
+        </div>
       </div>
     </>
   );

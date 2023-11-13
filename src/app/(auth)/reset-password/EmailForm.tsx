@@ -13,17 +13,24 @@ const EmailForm = ({ authCallback, buttonText }: EmailFormProps) => {
     await authCallback({ email });
   };
   return (
-    <div className="div">
-      <form action={formHandler}>
-        <div className="">
-          <label htmlFor="email">email</label>
-          <input id="email" name="email" type="text" />
+    <div className="w-80">
+      <form action={formHandler} className="flex flex-col gap-16">
+        <div className="flex flex-col gap-1">
+          <label htmlFor="email" className="text-gray-500">
+            email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            className="h-12 rounded-lg"
+          />
         </div>
         <div className="">
           <input
             type="submit"
             value={buttonText}
-            className="font-semibold bg-pink-300 p-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
+            className="font-semibold w-full bg-pink-300 p-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
           />
         </div>
       </form>
