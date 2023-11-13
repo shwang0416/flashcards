@@ -34,6 +34,7 @@ const ModalPage = async ({
     questionTitle,
     questionContents,
     answerContents,
+    tags,
   }: any) => {
     "use server";
 
@@ -42,6 +43,7 @@ const ModalPage = async ({
       questionTitle,
       questionContents,
       answerContents,
+      tags,
     });
 
     // revalidatePath가 안된다
@@ -87,7 +89,9 @@ const ModalPage = async ({
     question_title: questionTitle,
     question_contents: questionContents,
     answer_contents: answerContents,
+    tags,
   } = Cards[0];
+
   return (
     <>
       <Dialog>
@@ -99,6 +103,7 @@ const ModalPage = async ({
               questionTitle={questionTitle}
               questionContents={questionContents}
               answerContents={answerContents}
+              tags={tags}
             />
           ) : (
             <CardDetail
@@ -106,6 +111,7 @@ const ModalPage = async ({
               questionTitle={questionTitle}
               questionContents={questionContents}
               answerContents={answerContents}
+              tags={tags}
             />
           )}
         </Suspense>

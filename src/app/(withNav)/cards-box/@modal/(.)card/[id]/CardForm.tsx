@@ -1,11 +1,14 @@
 "use client";
 
 import MarkdownTextArea from "@/components/MarkdownTextArea";
+import TagForm from "./TagForm";
+import { useState } from "react";
 
 type CardFormProps = {
   questionTitle: string;
   questionContents: any;
   answerContents: any;
+  tags: string[];
 };
 
 type Props = {
@@ -14,6 +17,7 @@ type Props = {
     questionTitle,
     questionContents,
     answerContents,
+    tags,
   }: CardFormProps) => Promise<void>;
 } & Partial<CardFormProps>;
 
@@ -23,7 +27,10 @@ const CardForm = ({
   questionContents,
   answerContents,
   submitCallback,
+  tags,
 }: Props) => {
+  const [localTags, setLocalTags] = useState(tags as string[]);
+
   const onSubmitHandler = async (formData: FormData) => {
     const questionTitle = formData.get("question_title") as string;
     const questionContents = formData.get("question_contents") as string;
@@ -40,9 +47,13 @@ const CardForm = ({
       questionTitle,
       questionContents,
       answerContents,
+      tags: localTags,
     });
   };
 
+  const updateLocalTags = (tagList: string[]) => {
+    setLocalTags(tagList);
+  };
   return (
     <form
       action={onSubmitHandler}
@@ -56,6 +67,8 @@ const CardForm = ({
         className="w-full text-[24px] p-4 rounded-xl"
         defaultValue={questionTitle}
       />
+
+      <TagForm localTags={localTags} updateLocalTags={updateLocalTags} />
       <div className="w-full flex-1 overflow-y-auto">
         <MarkdownTextArea
           id="question_contents"

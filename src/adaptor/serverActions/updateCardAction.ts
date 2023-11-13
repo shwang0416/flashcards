@@ -7,6 +7,7 @@ export type UpdateCardProps = {
   questionTitle: string;
   questionContents: any;
   answerContents: any;
+  tags: string[];
 };
 
 const updateCardAction = async ({
@@ -14,6 +15,7 @@ const updateCardAction = async ({
   questionTitle,
   questionContents,
   answerContents,
+  tags,
 }: UpdateCardProps) => {
   const { data, error } = await supabase
     .from("Card")
@@ -22,6 +24,7 @@ const updateCardAction = async ({
         question_title: questionTitle,
         question_contents: questionContents,
         answer_contents: answerContents,
+        tags,
       },
     ])
     .eq("id", cardId)

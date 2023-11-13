@@ -1,12 +1,14 @@
 import { marked } from "marked";
 import parse from "html-react-parser";
 import Link from "next/link";
+import TagDetail from "./TagDetail";
 
 type CardDetailProps = {
   cardId: string;
   questionTitle: string;
   questionContents: string;
   answerContents: string;
+  tags: string[];
 };
 
 const CardDetail = ({
@@ -14,6 +16,7 @@ const CardDetail = ({
   questionTitle,
   questionContents,
   answerContents,
+  tags,
 }: CardDetailProps) => {
   return (
     <div className="w-full h-full flex flex-col gap-y-2 overflow-hidden rounded-xl">
@@ -24,6 +27,7 @@ const CardDetail = ({
       >
         {questionTitle}
       </h2>
+      <TagDetail tagList={tags} />
       <div className="w-full text-lg flex-1 overflow-y-auto">
         <div className="w-full p-4 h-full rounded-xl bg-white  overflow-auto">
           {questionContents &&

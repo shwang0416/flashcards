@@ -9,7 +9,7 @@ const getCardListAction = async ({ userId }: { userId: string }) => {
 
   const { data: Cards, error } = await supabase
     .from("Card")
-    .select("id, created_at, question_title, tag_ids, difficulty")
+    .select("id, created_at, question_title, tags, difficulty")
     .in("id", cardList ?? [])
     .lt("valid_from", new Date().toISOString());
 
