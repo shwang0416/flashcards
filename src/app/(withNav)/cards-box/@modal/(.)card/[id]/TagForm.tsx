@@ -1,7 +1,7 @@
 "use client";
 
 import Tag from "@/components/Tag";
-import { KeyboardEvent, FocusEvent } from "react";
+import { KeyboardEvent, FocusEvent, useMemo } from "react";
 
 type TagFormProps = {
   localTags: string[];
@@ -9,6 +9,10 @@ type TagFormProps = {
 };
 
 const TagForm = ({ localTags, updateLocalTags }: TagFormProps) => {
+  const hasLocalTags = useMemo(
+    () => localTags && localTags.length > 0,
+    [localTags],
+  );
   const onDelete = (tag: string) => {
     updateLocalTags(localTags.filter((localTag) => localTag !== tag));
   };
@@ -26,15 +30,15 @@ const TagForm = ({ localTags, updateLocalTags }: TagFormProps) => {
     const blank_pattern = /^\s+|\s+$/g;
     if (newTag.replace(blank_pattern, "") == "") return;
 
-    if (localTags?.length > 0) updateLocalTags([...localTags, newTag]);
+    if (hasLocalTags) updateLocalTags([...localTags, newTag]);
     else updateLocalTags([newTag]);
     target.value = "";
   };
 
   return (
     <div className="flex flex-row w-full p-2 gap-x-1 items-center bg-gray-50 rounded-xl h-10 min-h-fit">
-      {localTags &&
-        localTags?.map((tag) => (
+      {hasLocalTags &&
+        localTags.map((tag) => (
           <Tag
             textContent={tag}
             key={`key_${tag}`}
@@ -45,7 +49,9 @@ const TagForm = ({ localTags, updateLocalTags }: TagFormProps) => {
         ))}
 
       <textarea
-        placeholder="문제와 연관된 키워드를 입력해보세요 (생략 가능)"
+        placeholder={
+          hasLocalTags ? "" : "문제와 연관된 키워드를 입력해보세요 (생략 가능)"
+        }
         className="ml-2 mt-1 w-full h-6 self-end resize-none leading-loose align-bottom outline-none overflow-hidden bg-transparent"
         onKeyUp={handleOnKeyUp}
         onBlur={handleOnBlur}
