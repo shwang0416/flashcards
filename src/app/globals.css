@@ -27,7 +27,7 @@ code {
 }
 
 pre {
-  @apply bg-pink-50 p-0 leading-[4rem] rounded-lg border border-gray-300;
+  @apply bg-pink-50 p-4 overflow-auto max-h-[50%] rounded-lg border border-gray-300 text-sm;
 }
 
 pre code {
