@@ -6,13 +6,13 @@ import TagForm from "./TagForm";
 
 type CardFormProps = {
   questionTitle: string;
-  questionContents: any;
-  answerContents: any;
+  questionContents: string;
+  answerContents: string;
   tags: string[];
 };
 
 type Props = {
-  cardId: string;
+  // cardId?: string;
   submitCallback: ({
     questionTitle,
     questionContents,
@@ -22,7 +22,7 @@ type Props = {
 } & Partial<CardFormProps>;
 
 const CardForm = ({
-  cardId,
+  // cardId,
   questionTitle,
   questionContents,
   answerContents,

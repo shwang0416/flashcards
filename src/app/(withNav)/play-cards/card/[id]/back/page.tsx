@@ -15,6 +15,8 @@ const Page = async ({
   if (!id || !r) throw new Error("ERROR: card Id or note id is missing");
 
   const { data: Cards, error } = await getCardDetailAction({ cardId: id });
+  if (error) throw new Error("ERROR: getCardDetailAction failed");
+
   const ReviewNote = await getReviewNoteById({ noteId: r });
 
   if (!ReviewNote) throw new Error("no answer data in review notes");

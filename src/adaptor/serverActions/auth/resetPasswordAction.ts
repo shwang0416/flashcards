@@ -2,9 +2,8 @@
 
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
-import { NextRequest } from "next/server";
 
-const resetPasswordAction = async ({ email }) => {
+const resetPasswordAction = async ({ email }: { email: string }) => {
   const cookieStore = cookies();
 
   const supabase = createServerClient(

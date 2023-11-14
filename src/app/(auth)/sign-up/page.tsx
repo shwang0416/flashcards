@@ -14,17 +14,23 @@ const Page = () => {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
   );
 
-  const formHandler = async ({ email, password }) => {
-    try {
-      const { data } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-      setModalContents(SIGNUP_MODAL_CONTENTS.success);
-    } catch (e) {
-      console.error(e);
+  const formHandler = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) {
       setModalContents(SIGNUP_MODAL_CONTENTS.error);
+      throw new Error("ERROR: signUp failed");
     }
+    setModalContents(SIGNUP_MODAL_CONTENTS.success);
   };
 
   return (

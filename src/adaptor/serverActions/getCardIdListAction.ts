@@ -13,8 +13,8 @@ type GetCardListActionProps = {
  */
 const getCardListAction = async ({
   userId,
-  filterValidFrom = false,
-}: GetCardListActionProps) => {
+} // filterValidFrom = false,
+: GetCardListActionProps) => {
   const { data: UserCards } = await supabase
     .from("UserCards")
     .select("card_id")

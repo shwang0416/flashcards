@@ -17,6 +17,7 @@ const Dialog = ({ children }: { children: ReactNode }) => {
         <button
           className="p-0 w-full flex justify-end mb-4 bg-transparent hover:bg-transparent"
           onClick={backdropClickHandler}
+          type="button"
         >
           <XMarkIcon className="w-6 h-6 text-gray-600 hover:bg-pink-200 hover:text-white rounded cursor-pointer" />
         </button>

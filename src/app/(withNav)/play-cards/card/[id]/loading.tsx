@@ -1,22 +1,20 @@
 const Loading = () => (
-    <div className="mt-4 flex justify-center items-center h-full">
-      <div className="w-full h-full flex flex-col gap-4">
-        <div className="p-4 bg-gray-100 rounded-xl">
-          <h4 className="text-4xl font-semibold h-24" />
-        </div>
-        <div className="p-4 bg-gray-100 rounded-xl flex-grow text-xl" />
+  <div className="mt-4 flex h-full items-center justify-center">
+    <div className="flex h-full w-full flex-col gap-4">
+      <div className="rounded-xl bg-gray-100 p-4" />
+      <div className="flex-grow rounded-xl bg-gray-100 p-4 text-xl" />
 
-        <div className="flex flex-col-reverse w-full h-1/2 gap-4">
-          <div className="text-center font-semibold text-[24px] bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white">
-            ...
-          </div>
-          <div className="grid grid-cols-2 rounded-xl gap-4 flex-grow text-xl">
-            <div className="p-4 bg-gray-100 rounded-xl" />
-            <div className="p-4 bg-gray-100 rounded-xl" />
-          </div>
+      <div className="flex h-1/2 w-full flex-col-reverse gap-4">
+        <div className="cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-center text-[24px] font-semibold text-white hover:bg-pink-400">
+          ...
+        </div>
+        <div className="grid flex-grow grid-cols-2 gap-4 rounded-xl text-xl">
+          <div className="rounded-xl bg-gray-100 p-4" />
+          <div className="rounded-xl bg-gray-100 p-4" />
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 
 export default Loading;

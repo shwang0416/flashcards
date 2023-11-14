@@ -6,7 +6,7 @@ import {
   useMemo,
   forwardRef,
   InputHTMLAttributes,
-  ReactNode,
+  KeyboardEvent,
 } from "react";
 
 interface MarkdownTextAreaProps
@@ -23,18 +23,22 @@ const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
 
     const textareaOnChangeHandler = useMemo(
       () =>
-        debounce((event: any) => {
+        debounce((event: KeyboardEvent<HTMLTextAreaElement>) => {
           event.preventDefault();
-          setMarkedContents(marked(event.target.value, { breaks: true }));
+          setMarkedContents(
+            marked((event.target as HTMLTextAreaElement).value, {
+              breaks: true,
+            }),
+          );
         }, 100),
       [],
     );
 
     return (
-      <div className={`w-full h-full flex-grow grid grid-cols-2 ${gap}`}>
-        <div className="p-4 bg-gray-50 rounded-xl overflow-auto">
+      <div className={`grid h-full w-full flex-grow grid-cols-2 ${gap}`}>
+        <div className="overflow-auto rounded-xl bg-gray-50 p-4">
           <textarea
-            className="resize-none p-4 w-full h-full rounded-xl bg-transparent outline-none overflow-hidden"
+            className="h-full w-full resize-none overflow-hidden rounded-xl bg-transparent p-4 outline-none"
             ref={ref}
             {...props}
             onChange={textareaOnChangeHandler}
@@ -42,9 +46,8 @@ const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
             {children}
           </textarea>
         </div>
-        <div className="p-4 bg-white rounded-xl overflow-auto">
+        <div className="overflow-auto rounded-xl bg-white p-4">
           {markedContents && parse(markedContents)}
-          <h2 className="text-[30px] font-semibold" />
         </div>
       </div>
     );

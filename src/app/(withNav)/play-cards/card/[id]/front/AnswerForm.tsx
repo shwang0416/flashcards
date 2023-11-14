@@ -22,7 +22,10 @@ const AnswerForm = ({ cardId }: AnswerFormProps) => {
   const formAction = async (formData: FormData) => {
     const answerContents = formData.get("answer_contents") as string;
 
-    if (!answerContents) return alert("정답을 입력해주세요");
+    if (!answerContents) {
+      alert("정답을 입력해주세요");
+      return;
+    }
 
     // FIXME: 제출 전 최종 확인 => custom confirm창 필요
     const user = await getUserAction();
@@ -43,12 +46,12 @@ const AnswerForm = ({ cardId }: AnswerFormProps) => {
   return (
     <form
       action={formAction}
-      className="flex flex-col-reverse w-full h-1/2 gap-4"
+      className="flex h-1/2 w-full flex-col-reverse gap-4"
     >
       <input
         type="submit"
         value="정답 확인"
-        className=" font-semibold text-[24px] bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
+        className=" cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-[24px] font-semibold text-white hover:bg-pink-400"
       />
       <MarkdownTextArea
         name="answer_contents"

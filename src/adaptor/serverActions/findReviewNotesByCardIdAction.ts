@@ -7,24 +7,21 @@ const findReviewNotesByCardIdAction = async ({
 }: {
   cardId: string;
 }) => {
-  try {
-    const { data } = await supabase
-      .from("CardReviewNotes")
-      .select("review_note_id")
-      .eq("id", cardId);
+  const { data } = await supabase
+    .from("CardReviewNotes")
+    .select("review_note_id")
+    .eq("id", cardId);
 
-    if (!data) return;
-    const { review_note_id: reviewNoteId } = data[0];
+  if (!data) return null;
+  const { review_note_id: reviewNoteId } = data[0];
 
-    const { data: ReviewNote, error } = await supabase
-      .from("ReviewNote")
-      .select("answer_tried")
-      .eq("id", reviewNoteId);
+  const { data: ReviewNote, error } = await supabase
+    .from("ReviewNote")
+    .select("answer_tried")
+    .eq("id", reviewNoteId);
 
-    return ReviewNote;
-  } catch (e) {
-    throw new Error("ERROR: findReviewNotesByCardIdAction failed");
-  }
+  if (error) throw new Error("ERROR: findReviewNotesByCardIdAction failed");
+  return ReviewNote;
 };
 
 export default findReviewNotesByCardIdAction;

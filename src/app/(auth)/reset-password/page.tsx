@@ -10,8 +10,8 @@ import EmailForm from "./EmailForm";
 const Page = () => {
   const [modalContents, setModalContents] = useState<ModalContents | null>();
 
-  const formHandler = async ({ email }) => {
-    const { data, error } = await resetPasswordAction({ email });
+  const formHandler = async ({ email }: { email: string }) => {
+    const { error } = await resetPasswordAction({ email });
     if (error) {
       console.error(error);
       setModalContents(RESET_PASSWORD_MODAL_CONTENTS.error);

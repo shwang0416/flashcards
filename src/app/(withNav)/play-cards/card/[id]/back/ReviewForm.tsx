@@ -26,10 +26,11 @@ const ReviewForm = ({ noteId, nextCardId }: ReviewFormProps) => {
   const formAction = async (formData: FormData) => {
     const reviewContents = formData.get("review_contents") as string;
 
-    if (!reviewContents)
-      return confirm(
+    if (!reviewContents) {
+      window.confirm(
         "오답노트를 작성하지 않으시나요? 확인을 누르면 오답노트를 생략합니다",
       );
+    }
 
     await updateReviewAction({
       noteId,
@@ -43,12 +44,12 @@ const ReviewForm = ({ noteId, nextCardId }: ReviewFormProps) => {
   return (
     <form
       action={formAction}
-      className="flex flex-col-reverse w-full h-1/2 gap-4"
+      className="flex h-1/2 w-full flex-col-reverse gap-4"
     >
       <input
         type="submit"
         value="다음으로"
-        className=" font-semibold text-[24px] bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
+        className=" cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-[24px] font-semibold text-white hover:bg-pink-400"
       />
 
       <MarkdownTextArea

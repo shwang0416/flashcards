@@ -3,15 +3,14 @@
 import Modal, { ModalContents } from "@/components/Modal";
 import { useState } from "react";
 import { RESET_PASSWORD_MODAL_CONTENTS } from "@/data/modalContents";
-import { useRouter } from "next/navigation";
 import updatePasswordAction from "@/adaptor/serverActions/auth/updatePasswordAction";
 import PasswordForm from "./PasswordForm";
 
 const Page = () => {
   const [modalContents, setModalContents] = useState<ModalContents | null>();
 
-  const formHandler = async ({ password }) => {
-    const { data, error } = await updatePasswordAction({ password });
+  const formHandler = async ({ password }: { password: string }) => {
+    const { error } = await updatePasswordAction({ password });
 
     if (error) {
       console.error(error);

@@ -5,8 +5,8 @@ import supabase from "@/lib/supabase/supabase-service-role-client";
 export type UpdateCardProps = {
   cardId: string;
   questionTitle: string;
-  questionContents: any;
-  answerContents: any;
+  questionContents: string;
+  answerContents: string;
   tags: string[];
 };
 

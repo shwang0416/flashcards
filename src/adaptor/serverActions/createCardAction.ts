@@ -6,8 +6,8 @@ export type CreateCardProps = {
   userId: string;
   cardId: string;
   questionTitle: string;
-  questionContents: any;
-  answerContents: any;
+  questionContents: string;
+  answerContents: string;
 };
 
 const createCardAction = async ({

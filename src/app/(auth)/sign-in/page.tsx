@@ -12,8 +12,14 @@ const Page = () => {
   const [modalContents, setModalContents] = useState<ModalContents | null>();
   const router = useRouter();
 
-  const formHandler = async ({ email, password }) => {
-    const { data, error } = await signInAction({ email, password });
+  const formHandler = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    const { error } = await signInAction({ email, password });
 
     if (error) {
       console.error(error);

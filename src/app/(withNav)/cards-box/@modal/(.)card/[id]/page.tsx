@@ -30,12 +30,18 @@ const ModalPage = async ({
 
   if (error) throw new Error("ERROR: getCardDetailAction failed");
 
+  type UpdateCardProps = {
+    questionTitle: string;
+    questionContents: string;
+    answerContents: string;
+    tags: string[];
+  };
   const updateCard = async ({
     questionTitle,
     questionContents,
     answerContents,
     tags,
-  }: any) => {
+  }: UpdateCardProps) => {
     "use server";
 
     await updateCardAction({
@@ -55,11 +61,16 @@ const ModalPage = async ({
     redirect("/cards-box");
   };
 
+  type CreateCardProps = {
+    questionTitle: string;
+    questionContents: string;
+    answerContents: string;
+  };
   const createCard = async ({
     questionTitle,
     questionContents,
     answerContents,
-  }: any) => {
+  }: CreateCardProps) => {
     "use server";
 
     const cardId = generateId(10);
@@ -94,27 +105,27 @@ const ModalPage = async ({
 
   return (
     <Dialog>
-        <Suspense fallback={<LoadingSpinner />}>
-          {edit ? (
-            <CardForm
-              cardId={id}
-              submitCallback={updateCard}
-              questionTitle={questionTitle}
-              questionContents={questionContents}
-              answerContents={answerContents}
-              tags={tags}
-            />
-          ) : (
-            <CardDetail
-              cardId={id}
-              questionTitle={questionTitle}
-              questionContents={questionContents}
-              answerContents={answerContents}
-              tags={tags}
-            />
-          )}
-        </Suspense>
-      </Dialog>
+      <Suspense fallback={<LoadingSpinner />}>
+        {edit ? (
+          <CardForm
+            cardId={id}
+            submitCallback={updateCard}
+            questionTitle={questionTitle}
+            questionContents={questionContents}
+            answerContents={answerContents}
+            tags={tags}
+          />
+        ) : (
+          <CardDetail
+            cardId={id}
+            questionTitle={questionTitle}
+            questionContents={questionContents}
+            answerContents={answerContents}
+            tags={tags}
+          />
+        )}
+      </Suspense>
+    </Dialog>
   );
 };
 
