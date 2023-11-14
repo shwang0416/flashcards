@@ -15,32 +15,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex justify-between bg-slate-600 p-2 rounded-xl ">
+    <div className="flex h-full flex-col">
+      <div className="flex justify-between rounded-xl bg-slate-600 p-2 ">
         <Link
           href="/daily-check-in"
-          className="text-white border border-transparent hover:bg-slate-500 hover:border-slate-400 p-2 rounded-lg"
+          className="rounded-lg border border-transparent p-2 text-white hover:border-slate-400 hover:bg-slate-500"
         >
           <span className="mr-1 inline">Daily Check in</span>
-          <CalendarDaysIcon className="h-6 w-6 text-white inline" />
+          <CalendarDaysIcon className="hidden h-6 w-6 text-white md:inline" />
         </Link>
         <Link
           href="/play-cards"
-          className="text-white border border-transparent hover:bg-slate-500 hover:border-slate-400 p-2 rounded-lg"
+          className="rounded-lg border border-transparent p-2 text-white hover:border-slate-400 hover:bg-slate-500"
         >
           <span className="mr-1 inline">Play Cards</span>
-          <PlayIcon className="h-6 w-6 text-white inline" />
+          <PlayIcon className="hidden h-6 w-6 text-white md:inline" />
         </Link>
         <Link
           href="/cards-box"
-          className="text-white border border-transparent hover:bg-slate-500 hover:border-slate-400 p-2 rounded-lg"
+          className="rounded-lg border border-transparent p-2 text-white hover:border-slate-400 hover:bg-slate-500"
         >
           <span className="mr-1 inline">Cards Box</span>
-          <ArchiveBoxIcon className="h-6 w-6 text-white inline" />
+          <ArchiveBoxIcon className="hidden h-6 w-6 text-white md:inline" />
         </Link>
-        <div className="flex gap-x-1 flex-row text-white border border-transparent hover:bg-slate-500 hover:border-slate-400 p-2 rounded-lg items-center">
+        <div className="flex flex-row items-center gap-x-1 rounded-lg border border-transparent p-2 text-white hover:border-slate-400 hover:bg-slate-500">
           <LogoutForm />
-          <ArrowRightOnRectangleIcon className="h-6 w-6 text-white inline" />
+          <ArrowRightOnRectangleIcon className="hidden h-6 w-6 text-white md:inline" />
         </div>
       </div>
 

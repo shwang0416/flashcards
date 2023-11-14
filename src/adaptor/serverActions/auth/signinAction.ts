@@ -3,7 +3,13 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-const signInAction = async ({ email, password }) => {
+const signInAction = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
   const cookieStore = cookies();
 
   const supabase = createServerClient(
