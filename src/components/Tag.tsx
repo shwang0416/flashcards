@@ -11,10 +11,11 @@ type TagProps = {
 };
 
 const colorMapper = {
-  pink: "text-pink-500 border-pink-500 bg-pink-100",
-  yellow: "text-pink-500 border-pink-500 bg-pink-100",
-  green: "text-pink-500 border-pink-500 bg-pink-100",
-  lime: "text-pink-500 border-pink-500 bg-pink-100",
+  pink: "text-pink-500 bg-pink-100",
+  yellow: "text-yellow-500 bg-yellow-100",
+  green: "text-green-500 bg-green-100",
+  lime: "text-lime-500 bg-lime-100",
+  default: "text-gray-500 bg-gray-100",
 };
 const Tag = ({
   textContent,
@@ -23,7 +24,7 @@ const Tag = ({
   onDelete,
 }: TagProps) => (
   <div
-    className={`flex h-fit w-fit flex-row gap-x-1 break-keep rounded-full border border-slate-500 px-2 py-1 text-sm ${
+    className={`flex h-fit w-fit flex-row gap-x-1 break-keep rounded-full border border-slate-300 px-2 py-1 text-sm ${
       deleteable ?? " pl-2 pr-1 "
     } ${colorMapper[color ?? "pink"]}`}
   >
