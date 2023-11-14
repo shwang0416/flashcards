@@ -3,7 +3,7 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-const updatePasswordAction = async ({ password }) => {
+const updatePasswordAction = async ({ password }: { password: string }) => {
   const cookieStore = cookies();
 
   const supabase = createServerClient(
