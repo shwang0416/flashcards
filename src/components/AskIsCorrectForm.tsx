@@ -1,7 +1,7 @@
 "use client";
 
-import updateCardByIdAction from "@/adaptor/serverActions/updateCardByIdAction";
 import useNextCard from "@/hooks/useNextCard";
+import updateCardByIdAction from "@/adaptor/serverActions/updateCardByIdAction";
 
 const clientAction = async (
   formData: any,
@@ -12,13 +12,13 @@ const clientAction = async (
   const answer = formData.get("answer");
   const nextValidFrom = new Date();
   if (answer === "again") {
-    //again: 1 min
+    // again: 1 min
     nextValidFrom.setMinutes(nextValidFrom.getMinutes() + 1);
   } else if (answer === "good") {
-    //good: 1 day
+    // good: 1 day
     nextValidFrom.setHours(nextValidFrom.getHours() + 24);
   } else {
-    //easy: 3 days
+    // easy: 3 days
     nextValidFrom.setHours(nextValidFrom.getHours() + 72);
   }
   await updateCardByIdAction(cardId, {

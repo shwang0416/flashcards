@@ -15,7 +15,7 @@ const createReviewAction = async ({
   noteId,
   answerContents,
 }: createReviewProps) => {
-  //FIXME: 프로미스 체인? 하나가 실패하면 모두가 실패하게 처리 해야함
+  // FIXME: 프로미스 체인? 하나가 실패하면 모두가 실패하게 처리 해야함
 
   try {
     await supabase.from("ReviewNote").insert([

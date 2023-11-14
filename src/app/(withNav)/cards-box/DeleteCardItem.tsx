@@ -1,7 +1,7 @@
 "use client";
 
-import StarRating from "./StarRating";
 import { CheckIcon } from "@heroicons/react/20/solid";
+import StarRating from "./StarRating";
 
 type CardItemProps = {
   id: string;
@@ -10,8 +10,7 @@ type CardItemProps = {
   difficultyLvl: number;
 };
 
-const DeleteCardItem = ({ id, title, date, difficultyLvl }: CardItemProps) => {
-  return (
+const DeleteCardItem = ({ id, title, date, difficultyLvl }: CardItemProps) => (
     <div className="rounded-xl relative bg-white h-60 ">
       <input
         type="checkbox"
@@ -41,6 +40,5 @@ const DeleteCardItem = ({ id, title, date, difficultyLvl }: CardItemProps) => {
       </label>
     </div>
   );
-};
 
 export default DeleteCardItem;

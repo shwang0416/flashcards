@@ -24,7 +24,7 @@ const AnswerForm = ({ cardId }: AnswerFormProps) => {
 
     if (!answerContents) return alert("정답을 입력해주세요");
 
-    //FIXME: 제출 전 최종 확인 => custom confirm창 필요
+    // FIXME: 제출 전 최종 확인 => custom confirm창 필요
     const user = await getUserAction();
 
     if (!user) throw new Error("Error: no user. createCard failed");
@@ -47,7 +47,7 @@ const AnswerForm = ({ cardId }: AnswerFormProps) => {
     >
       <input
         type="submit"
-        value={"정답 확인"}
+        value="정답 확인"
         className=" font-semibold text-[24px] bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
       />
       <MarkdownTextArea

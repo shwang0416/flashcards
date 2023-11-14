@@ -13,8 +13,7 @@ const Tag = ({
   color,
   deleteable = false,
   onDelete,
-}: TagProps) => {
-  return (
+}: TagProps) => (
     <div
       className={`rounded-full flex flex-row py-1 px-2 border gap-x-1 border-slate-500 break-keep w-fit h-fit text-sm ${
         deleteable ?? " pl-2 pr-1 "
@@ -31,6 +30,5 @@ const Tag = ({
       )}
     </div>
   );
-};
 
 export default Tag;

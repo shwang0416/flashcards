@@ -2,9 +2,6 @@
 
 import CardItemSkeleton from "@/components/loading/CardItemSkeleton";
 import { FormEvent, Suspense, useState } from "react";
-import DeleteCardItem from "./DeleteCardItem";
-import LinkCardItem from "./LinkCardItem";
-import NewCardItem from "./NewCardItem";
 import deleteCardsAction from "@/adaptor/serverActions/deleteCardsAction";
 import { useRouter } from "next/navigation";
 import {
@@ -13,6 +10,9 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import NewCardItem from "./NewCardItem";
+import LinkCardItem from "./LinkCardItem";
+import DeleteCardItem from "./DeleteCardItem";
 
 type Card = {
   question_title: string;
@@ -93,7 +93,7 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
           </button>
           {isMenuOpen && (
             <div className="rounded-xl bg-gray-100 w-32 h-fit flex flex-col items-center p-1">
-              <div className="mt-12"></div>
+              <div className="mt-12" />
               {deleteMode ? (
                 <Link
                   href={{
@@ -131,7 +131,7 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
             className="flex flex-col gap-4 h-full"
           >
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              <NewCardItem disabled={true} />
+              <NewCardItem disabled />
               <Suspense fallback={<CardItemSkeleton />}>
                 {cards.map((card: Card) => (
                   <DeleteCardItem
@@ -148,7 +148,7 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
               <button
                 type="submit"
                 disabled={!isCardSelected}
-                className={`w-full font-semibold text-[24px] text-center disabled:bg-slate-300 bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white`}
+                className="w-full font-semibold text-[24px] text-center disabled:bg-slate-300 bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
               >
                 삭제하기
               </button>

@@ -7,7 +7,7 @@ const TagDetail = ({ tagList }: { tagList: string[] }) => (
         <Tag
           textContent={tag}
           key={`key_${tag}`}
-          color={"pink"}
+          color="pink"
           deleteable={false}
         />
       ))}

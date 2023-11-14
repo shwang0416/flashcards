@@ -42,8 +42,8 @@ const TagForm = ({ localTags, updateLocalTags }: TagFormProps) => {
           <Tag
             textContent={tag}
             key={`key_${tag}`}
-            color={"pink"}
-            deleteable={true}
+            color="pink"
+            deleteable
             onDelete={() => onDelete(tag)}
           />
         ))}
@@ -55,7 +55,7 @@ const TagForm = ({ localTags, updateLocalTags }: TagFormProps) => {
         className="ml-2 mt-1 w-full h-6 self-end resize-none leading-loose align-bottom outline-none overflow-hidden bg-transparent"
         onKeyUp={handleOnKeyUp}
         onBlur={handleOnBlur}
-      ></textarea>
+      />
     </div>
   );
 };

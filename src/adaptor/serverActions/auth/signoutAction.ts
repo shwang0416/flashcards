@@ -23,7 +23,7 @@ const signOutAction = async () => {
       },
     },
   );
-  return await supabase.auth.signOut();
+  return supabase.auth.signOut();
 };
 
 export default signOutAction;

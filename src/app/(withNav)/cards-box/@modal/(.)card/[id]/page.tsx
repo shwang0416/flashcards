@@ -1,17 +1,17 @@
 import Dialog from "@/components/Dialog";
-import CardForm from "./CardForm";
 import getUserAction from "@/adaptor/serverActions/auth/getUserAction";
 import createCardAction from "@/adaptor/serverActions/createCardAction";
 import { generateId } from "@/util/idGenerator";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
-import CardDetail from "./CardDetail";
 import Modal from "@/components/Modal";
 import { CARDS_BOX_MODAL_CONTENTS } from "@/data/modalContents";
 import updateCardAction from "@/adaptor/serverActions/updateCardAction";
 import { Suspense } from "react";
 import LoadingSpinner from "@/components/loading/LoadingSpinner";
+import CardDetail from "./CardDetail";
+import CardForm from "./CardForm";
 
 export const dynamic = "force-dynamic";
 
@@ -93,8 +93,7 @@ const ModalPage = async ({
   } = Cards[0];
 
   return (
-    <>
-      <Dialog>
+    <Dialog>
         <Suspense fallback={<LoadingSpinner />}>
           {edit ? (
             <CardForm
@@ -116,7 +115,6 @@ const ModalPage = async ({
           )}
         </Suspense>
       </Dialog>
-    </>
   );
 };
 

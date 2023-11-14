@@ -15,8 +15,7 @@ const LogoutForm = () => {
   };
 
   return (
-    <>
-      <form>
+    <form>
         <input
           formAction={signout}
           className="text-white cursor-pointer"
@@ -24,7 +23,6 @@ const LogoutForm = () => {
           value="Logout"
         />
       </form>
-    </>
   );
 };
 

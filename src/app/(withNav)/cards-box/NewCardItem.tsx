@@ -3,14 +3,12 @@
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-const NewCardItem = ({ disabled }: { disabled?: boolean }) => {
-  return (
-    <>
-      <Link
+const NewCardItem = ({ disabled }: { disabled?: boolean }) => (
+    <Link
         // href={{
         //   query: { id: "create-new-card" },
         // }}
-        href={`/cards-box/card/create-new-card`}
+        href="/cards-box/card/create-new-card"
         className={`rounded-xl ${
           disabled
             ? "bg-gray-100"
@@ -23,8 +21,6 @@ const NewCardItem = ({ disabled }: { disabled?: boolean }) => {
           }`}
         />
       </Link>
-    </>
   );
-};
 
 export default NewCardItem;

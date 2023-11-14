@@ -6,13 +6,11 @@ const Layout = ({
 }: {
   children: ReactNode;
   modal: ReactNode;
-}) => {
-  return (
+}) => (
     <>
       {modal}
       {children}
     </>
   );
-};
 
 export default Layout;

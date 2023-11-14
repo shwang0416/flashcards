@@ -23,7 +23,7 @@ const signInAction = async ({ email, password }) => {
       },
     },
   );
-  return await supabase.auth.signInWithPassword({
+  return supabase.auth.signInWithPassword({
     email,
     password,
   });

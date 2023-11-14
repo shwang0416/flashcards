@@ -24,7 +24,7 @@ const updatePasswordAction = async ({ password }) => {
     },
   );
 
-  return await supabase.auth.updateUser({
+  return supabase.auth.updateUser({
     password,
   });
 };

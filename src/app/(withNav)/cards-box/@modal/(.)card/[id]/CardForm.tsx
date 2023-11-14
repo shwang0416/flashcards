@@ -1,8 +1,8 @@
 "use client";
 
 import MarkdownTextArea from "@/components/MarkdownTextArea";
-import TagForm from "./TagForm";
 import { useState } from "react";
+import TagForm from "./TagForm";
 
 type CardFormProps = {
   questionTitle: string;
@@ -92,7 +92,7 @@ const CardForm = ({
 
       <input
         type="submit"
-        value={"Submit"}
+        value="Submit"
         className=" font-semibold text-[24px] bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
       />
     </form>

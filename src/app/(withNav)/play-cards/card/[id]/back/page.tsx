@@ -1,7 +1,7 @@
 import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
-import ReviewForm from "../back/ReviewForm";
 import getReviewNoteById from "@/adaptor/serverActions/getReviewNoteById";
 import getNextCardIdFromCookie from "@/adaptor/serverActions/getNextCardIdFromCookie";
+import ReviewForm from "./ReviewForm";
 
 const Page = async ({
   params,

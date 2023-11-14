@@ -16,7 +16,7 @@ interface MarkdownTextAreaProps
 }
 
 const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
-  function MyInput({ children, gap = "gap-4", ...props }, ref) {
+  ({ children, gap = "gap-4", ...props }, ref) => {
     const [markedContents, setMarkedContents] = useState<string>(
       children ? marked(children, { breaks: true }) : "",
     );
@@ -44,7 +44,7 @@ const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
         </div>
         <div className="p-4 bg-white rounded-xl overflow-auto">
           {markedContents && parse(markedContents)}
-          <h2 className="text-[30px] font-semibold"></h2>
+          <h2 className="text-[30px] font-semibold" />
         </div>
       </div>
     );

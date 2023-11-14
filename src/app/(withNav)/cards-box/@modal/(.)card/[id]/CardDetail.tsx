@@ -17,8 +17,7 @@ const CardDetail = ({
   questionContents,
   answerContents,
   tags,
-}: CardDetailProps) => {
-  return (
+}: CardDetailProps) => (
     <div className="w-full h-full flex flex-col gap-y-2 overflow-hidden rounded-xl">
       <h2
         id="question_title"
@@ -51,6 +50,5 @@ const CardDetail = ({
       </Link>
     </div>
   );
-};
 
 export default CardDetail;

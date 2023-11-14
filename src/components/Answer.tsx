@@ -1,5 +1,5 @@
-import getRecordMapById from "@/adaptor/serverActions/getRecordMapByIdAction";
 import Notion from "@/components/Notion";
+import getRecordMapById from "@/adaptor/serverActions/getRecordMapByIdAction";
 import AskIsCorrect from "./AskIsCorrect";
 
 const Answer = async ({ cardId }: { cardId: string }) => {

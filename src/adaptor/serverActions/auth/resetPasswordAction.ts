@@ -25,7 +25,7 @@ const resetPasswordAction = async ({ email }) => {
     },
   );
 
-  return await supabase.auth.resetPasswordForEmail(email, {
+  return supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/update-password`,
   });
 };

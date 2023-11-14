@@ -3,9 +3,9 @@
 import Modal, { ModalContents } from "@/components/Modal";
 import { useState } from "react";
 import { RESET_PASSWORD_MODAL_CONTENTS } from "@/data/modalContents";
-import EmailForm from "./EmailForm";
 import resetPasswordAction from "@/adaptor/serverActions/auth/resetPasswordAction";
 import Link from "next/link";
+import EmailForm from "./EmailForm";
 
 const Page = () => {
   const [modalContents, setModalContents] = useState<ModalContents | null>();

@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-const Page = () => {
-  return (
+const Page = () => (
     <div className="flex flex-col h-full items-center justify-center gap-4">
       <h1 className="font-semibold">카드를 모두 플레이했습니다</h1>
       <div className="py-64 text-[320px]">🎉</div>
@@ -14,6 +13,5 @@ const Page = () => {
       </Link>
     </div>
   );
-};
 
 export default Page;
