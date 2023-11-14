@@ -17,7 +17,6 @@
     "html-react-parser": "^5.0.6",
     "marked": "^9.1.5",
     "next": "13.5.6",
-    "notion-client": "^6.16.0",
     "react": "^18",
     "react-dom": "^18",
     "react-notion-x": "^6.16.0"
