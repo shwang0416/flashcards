@@ -12,7 +12,7 @@ type CardFormProps = {
 };
 
 type Props = {
-  // cardId?: string;
+  cardId: string;
   submitCallback: ({
     questionTitle,
     questionContents,
@@ -22,7 +22,7 @@ type Props = {
 } & Partial<CardFormProps>;
 
 const CardForm = ({
-  // cardId,
+  cardId,
   questionTitle,
   questionContents,
   answerContents,
@@ -56,15 +56,16 @@ const CardForm = ({
   };
   return (
     <form
+      id={`card_${cardId}`}
       action={onSubmitHandler}
-      className="flex flex-col gap-y-2 w-full h-full overflow-hidden rounded-xl"
+      className="flex h-full w-full flex-col gap-y-2 overflow-hidden rounded-xl"
     >
       <input
         type="text"
         id="question_title"
         name="question_title"
         placeholder="문제 제목을 입력하세요"
-        className="w-full text-[24px] p-4 rounded-xl"
+        className="w-full rounded-xl p-4 text-[24px]"
         defaultValue={questionTitle}
       />
 
@@ -93,7 +94,7 @@ const CardForm = ({
       <input
         type="submit"
         value="Submit"
-        className=" font-semibold text-[24px] bg-pink-300 px-6 py-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
+        className=" cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-[24px] font-semibold text-white hover:bg-pink-400"
       />
     </form>
   );
