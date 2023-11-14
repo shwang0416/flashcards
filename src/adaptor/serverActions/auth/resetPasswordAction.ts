@@ -25,7 +25,7 @@ const resetPasswordAction = async ({ email }: { email: string }) => {
   );
 
   return supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/update-password`,
+    redirectTo: `${process.env.VERCEL_URL}/update-password`,
   });
 };
 
