@@ -27,7 +27,11 @@ const Modal = ({
             <span key={elem}>{elem}</span>
           ))}
         </div>
-        <button type="button" onClick={buttonCallback ?? router.back}>
+        <button
+          type="button"
+          className="bg-pink-300"
+          onClick={buttonCallback ?? router.back}
+        >
           {buttonText}
         </button>
       </div>
