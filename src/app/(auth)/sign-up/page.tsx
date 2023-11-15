@@ -24,6 +24,9 @@ const Page = () => {
     const { error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        emailRedirectTo: `${process.env.VERCEL_URL}/sign-in`,
+      },
     });
 
     if (error) {
@@ -41,12 +44,12 @@ const Page = () => {
           buttonCallback={() => setModalContents(null)}
         />
       )}
-      <div className="flex flex-col justify-center items-center h-full gap-10">
+      <div className="flex h-full flex-col items-center justify-center gap-10">
         <h2 className="text-xl">회원가입 페이지</h2>
         <AuthForm authCallback={formHandler} buttonText="회원 가입" />
         <div className="flex flex-row gap-x-2">
           <span>이미 계정이 있으신가요? </span>
-          <Link href="/sign-in" className="underline text-pink-500">
+          <Link href="/sign-in" className="text-pink-500 underline">
             로그인하기
           </Link>
         </div>
