@@ -38,7 +38,7 @@ export default function RootLayout({
           <span className="mr-1 inline">Cards Box</span>
           <ArchiveBoxIcon className="hidden h-6 w-6 text-white md:inline" />
         </Link>
-        <div className="flex flex-row items-center gap-x-1 rounded-lg border border-transparent p-2 text-white hover:border-slate-400 hover:bg-slate-500">
+        <div className="flex cursor-pointer flex-row items-center gap-x-1 rounded-lg border border-transparent p-2 text-white hover:border-slate-400 hover:bg-slate-500">
           <LogoutForm />
           <ArrowRightOnRectangleIcon className="hidden h-6 w-6 text-white md:inline" />
         </div>
