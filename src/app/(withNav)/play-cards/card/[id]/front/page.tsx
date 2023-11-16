@@ -1,5 +1,7 @@
 import getCardQuestionAction from "@/adaptor/serverActions/getCardQuestionAction";
 import AnswerForm from "./AnswerForm";
+import { marked } from "marked";
+import parse from "html-react-parser";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -12,13 +14,16 @@ const Page = async ({ params }: { params: { id: string } }) => {
     Cards[0];
 
   return (
-    <div className="flex flex-col pt-4 gap-4 flex-grow">
-      <div className=" w-full h-1/2 flex flex-col gap-4">
-        <div className="p-4 bg-white rounded-xl">
-          <h4 className="h-24 text-4xl font-semibold">{questionTitle}</h4>
+    <div className="flex h-full flex-grow flex-col gap-4 pt-4">
+      <div className="flex h-1/2 w-full flex-col gap-4">
+        <div className="rounded-xl  bg-white p-4">
+          <h4 className="h-24 text-4xl font-semibold underline decoration-slate-200 decoration-double">
+            {questionTitle}
+          </h4>
         </div>
-        <div className="p-4 bg-white rounded-xl flex-grow text-xl">
-          {questionContents}
+        <div className="flex-grow rounded-xl bg-white p-4 text-xl">
+          {questionContents &&
+            parse(marked(questionContents, { breaks: true }))}
         </div>
       </div>
       <AnswerForm cardId={id} />

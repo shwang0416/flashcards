@@ -2,6 +2,8 @@ import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
 import getReviewNoteById from "@/adaptor/serverActions/getReviewNoteById";
 import getNextCardIdFromCookie from "@/adaptor/serverActions/getNextCardIdFromCookie";
 import ReviewForm from "./ReviewForm";
+import { marked } from "marked";
+import parse from "html-react-parser";
 
 const Page = async ({
   params,
@@ -33,23 +35,22 @@ const Page = async ({
   } = Cards[0];
 
   return (
-    <div className="flex flex-col pt-4 gap-4 flex-grow">
-      <div className=" w-full h-1/2 flex flex-col gap-4">
-        <div className="p-4 bg-white rounded-xl">
+    <div className="flex h-full flex-grow flex-col gap-4 pt-4">
+      <div className=" flex h-1/2 w-full flex-col gap-4">
+        <div className="rounded-xl bg-white p-4">
           <h4 className="h-24 text-4xl font-semibold">{questionTitle}</h4>
         </div>
-        <div className="flex flex-row gap-4 flex-grow text-xl">
-          <div className="flex-grow bg-white rounded-xl p-4">
-            {questionContents}
+        <div className="grid flex-grow grid-cols-3 gap-4 text-xl">
+          <div className="flex-grow rounded-xl bg-white p-4">
+            {questionContents &&
+              parse(marked(questionContents, { breaks: true }))}
           </div>
-          <div className="flex-grow bg-white rounded-xl p-4">
-            {answerContents}
+          <div className="flex-grow rounded-xl bg-white p-4">
+            {answerContents && parse(marked(answerContents, { breaks: true }))}
           </div>
-          <div className="flex-grow bg-white rounded-xl p-4">{answerTried}</div>
+          <div className="flex-grow rounded-xl bg-white p-4">{answerTried}</div>
         </div>
       </div>
-
-      {/* props를 잘 넘겨서 정답이랑 오답노트 둘 다 입력받을 수 있도록 컴포넌트를 재사용하자 */}
       <ReviewForm noteId={r} nextCardId={nextCardId} />
     </div>
   );
