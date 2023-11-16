@@ -1,6 +1,6 @@
 import supabase from "@/lib/supabase/supabase-service-role-client";
 
-type GetCardListActionProps = {
+type GetCardIdListActionProps = {
   userId: string;
   tags?: string[];
   filterValidFrom?: boolean;
@@ -11,10 +11,10 @@ type GetCardListActionProps = {
  * @param param0 \
  * @returns
  */
-const getCardListAction = async ({
+const getCardIdListAction = async ({
   userId,
-} // filterValidFrom = false,
-: GetCardListActionProps) => {
+  tags, // filterValidFrom = false,
+}: GetCardIdListActionProps) => {
   const { data: UserCards } = await supabase
     .from("UserCards")
     .select("card_id")
@@ -25,13 +25,14 @@ const getCardListAction = async ({
     .from("Card")
     .select("id")
     .in("id", cardList ?? [])
+    .overlaps("tags", tags ?? [])
     .lt("valid_from", new Date().toISOString());
 
   if (error) {
-    throw new Error("ERROR: getCardListAction failed");
+    throw new Error("ERROR: getCardIdListAction failed");
   }
 
   return Cards;
 };
 
-export default getCardListAction;
+export default getCardIdListAction;
