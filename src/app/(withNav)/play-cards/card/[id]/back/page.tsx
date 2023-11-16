@@ -38,17 +38,21 @@ const Page = async ({
     <div className="flex h-full flex-grow flex-col gap-4 pt-4">
       <div className=" flex h-1/2 w-full flex-col gap-4">
         <div className="rounded-xl bg-white p-4">
-          <h4 className="h-24 text-4xl font-semibold">{questionTitle}</h4>
+          <h4 className="h-24 text-4xl font-semibold underline decoration-slate-200 decoration-double">
+            {questionTitle}
+          </h4>
         </div>
         <div className="grid flex-grow grid-cols-3 gap-4 text-xl">
-          <div className="flex-grow rounded-xl bg-white p-4">
+          <div className="flex-grow break-words rounded-xl border border-gray-200 bg-white p-4">
             {questionContents &&
               parse(marked(questionContents, { breaks: true }))}
           </div>
-          <div className="flex-grow rounded-xl bg-white p-4">
+          <div className="flex-grow break-words rounded-xl border border-gray-200 bg-white p-4">
             {answerContents && parse(marked(answerContents, { breaks: true }))}
           </div>
-          <div className="flex-grow rounded-xl bg-white p-4">{answerTried}</div>
+          <div className="flex-grow break-words rounded-xl border border-gray-200 bg-white p-4">
+            {answerTried && parse(marked(answerTried, { breaks: true }))}
+          </div>
         </div>
       </div>
       <ReviewForm noteId={r} nextCardId={nextCardId} />
