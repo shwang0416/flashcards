@@ -4,6 +4,10 @@
 
 body {
   @apply leading-8;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .button-default {
