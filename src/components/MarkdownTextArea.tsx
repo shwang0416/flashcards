@@ -35,10 +35,10 @@ const MarkdownTextArea = forwardRef<HTMLTextAreaElement, MarkdownTextAreaProps>(
     );
 
     return (
-      <div className={`grid h-full w-full flex-grow grid-cols-2 ${gap}`}>
-        <div className="overflow-auto rounded-xl bg-gray-50 p-4">
+      <div className={`grid h-full w-full flex-grow grid-cols-2 ${gap} `}>
+        <div className="overflow-auto rounded-xl border-2 border-transparent bg-gray-50 p-4 hover:border-pink-200">
           <textarea
-            className="h-full w-full resize-none overflow-hidden rounded-xl bg-transparent p-4 outline-none"
+            className="h-full w-full resize-none overflow-hidden rounded-xl bg-transparent p-4 outline-none "
             ref={ref}
             {...props}
             onChange={textareaOnChangeHandler}
