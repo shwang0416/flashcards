@@ -6,7 +6,7 @@ body {
   @apply leading-8;
 }
 
-button {
+.button-default {
   @apply cursor-pointer rounded-xl bg-pink-300 px-6 py-3 font-semibold text-white hover:bg-pink-400;
 }
 

@@ -154,7 +154,7 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
               <button
                 type="submit"
                 disabled={!isCardSelected}
-                className="w-full cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-center text-[24px] font-semibold text-white hover:bg-pink-400 disabled:bg-slate-300"
+                className="button-default w-full cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-center text-[24px] font-semibold text-white hover:bg-pink-400 disabled:bg-slate-300"
               >
                 삭제하기
               </button>

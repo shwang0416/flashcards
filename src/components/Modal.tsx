@@ -29,7 +29,7 @@ const Modal = ({
         </div>
         <button
           type="button"
-          className="bg-pink-300"
+          className="button-default bg-pink-300"
           onClick={buttonCallback ?? router.back}
         >
           {buttonText}
