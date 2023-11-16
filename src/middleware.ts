@@ -76,9 +76,6 @@ const isAuthPage = (req: NextRequest) =>
   req.nextUrl.pathname.startsWith("/reset-password") ||
   req.nextUrl.pathname.startsWith("/update-password");
 
-const isPlayCardsPage = (req: NextRequest) =>
-  req.nextUrl.pathname.startsWith("/play-cards");
-
 export const config = {
   matcher: ["/", "/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

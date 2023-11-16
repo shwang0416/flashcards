@@ -1,7 +1,7 @@
 import getCardQuestionAction from "@/adaptor/serverActions/getCardQuestionAction";
-import AnswerForm from "./AnswerForm";
 import { marked } from "marked";
 import parse from "html-react-parser";
+import AnswerForm from "./AnswerForm";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const { id } = params;

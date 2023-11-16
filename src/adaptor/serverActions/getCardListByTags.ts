@@ -1,8 +1,8 @@
 "use server";
 
-import { TagStatus } from "@/components/MultiselectTags";
 import getLinkedList from "@/util/getLinkedList";
 import { cookies } from "next/headers";
+import { TagStatus } from "@/data/Tag";
 import getUserAction from "./auth/getUserAction";
 import getCardIdListAction from "./getCardIdListAction";
 
@@ -11,6 +11,7 @@ const getCardListByTags = async (remoteTagStatus: TagStatus) => {
     if (remoteTagStatus[tag]) {
       return tag;
     }
+    return null;
   });
 
   const user = await getUserAction();

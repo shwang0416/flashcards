@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import SelectTag from "./SelectTag";
 import getCardListByTags from "@/adaptor/serverActions/getCardListByTags";
 import { useRouter } from "next/navigation";
+import { TagStatus } from "@/data/Tag";
+import SelectTag from "./SelectTag";
 
 const mockTags = ["React", "NextJs", "JS/TS", "브라우저", "면접준비"];
 
-export type TagStatus = {
-  [key: string]: boolean;
-};
 const MultiselectTags = () => {
   const router = useRouter();
   const [tagStatus, setTagStatus] = useState(

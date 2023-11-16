@@ -1,9 +1,9 @@
 import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
 import getReviewNoteById from "@/adaptor/serverActions/getReviewNoteById";
 import getNextCardIdFromCookie from "@/adaptor/serverActions/getNextCardIdFromCookie";
-import ReviewForm from "./ReviewForm";
 import { marked } from "marked";
 import parse from "html-react-parser";
+import ReviewForm from "./ReviewForm";
 
 const Page = async ({
   params,
