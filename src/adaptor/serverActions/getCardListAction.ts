@@ -1,11 +1,12 @@
 import supabase from "@/lib/supabase/supabase-service-role-client";
+import getUserAction from "./auth/getUserAction";
+import getUserCards from "../getUserCards";
 
-const getCardListAction = async ({ userId }: { userId: string }) => {
-  const { data: UserCards } = await supabase
-    .from("UserCards")
-    .select("card_id")
-    .eq("user_id", userId);
-  const cardList = UserCards?.map((elem) => elem.card_id);
+const getCardListAction = async () => {
+  const user = await getUserAction();
+  if (!user) throw new Error("ERROR: no user");
+
+  const cardList = await getUserCards(user.id);
 
   const { data: Cards, error } = await supabase
     .from("Card")

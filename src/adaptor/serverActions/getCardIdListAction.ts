@@ -1,9 +1,9 @@
-import supabase from "@/lib/supabase/supabase-service-role-client";
 import getCardIdListByTags from "../getCardIdListByTags";
 import getCardIdListByAllTags from "../getCardIdListByAllTags";
+import getUserCards from "../getUserCards";
+import getUserAction from "./auth/getUserAction";
 
 type GetCardIdListActionProps = {
-  userId: string;
   tags?: string[];
   filterValidFrom?: boolean;
 };
@@ -14,17 +14,12 @@ type GetCardIdListActionProps = {
  * @returns
  */
 const getCardIdListAction = async ({
-  userId,
   tags, // filterValidFrom = false,
 }: GetCardIdListActionProps) => {
-  const { data: UserCards, error } = await supabase
-    .from("UserCards")
-    .select("card_id")
-    .eq("user_id", userId);
+  const user = await getUserAction();
+  if (!user) throw new Error("ERROR: no user");
 
-  if (error) throw new Error("ERROR: getCardIdListAction failed");
-
-  const cardList = UserCards?.map((elem) => elem.card_id);
+  const cardList = await getUserCards(user.id);
 
   if (tags && tags.length > 0) {
     return getCardIdListByTags(cardList, tags);

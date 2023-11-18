@@ -3,7 +3,6 @@
 import getLinkedList from "@/util/getLinkedList";
 import { cookies } from "next/headers";
 import { TagStatus } from "@/entity/Tag";
-import getUserAction from "./auth/getUserAction";
 import getCardIdListAction from "./getCardIdListAction";
 
 const getCardListByTags = async (remoteTagStatus: TagStatus) => {
@@ -14,11 +13,7 @@ const getCardListByTags = async (remoteTagStatus: TagStatus) => {
     return null;
   });
 
-  const user = await getUserAction();
-  if (!user) throw new Error("ERROR: no user");
-
   const cards = await getCardIdListAction({
-    userId: user.id,
     tags: selectedTags,
   });
   const cardIds = cards.map((elem) => elem.id);

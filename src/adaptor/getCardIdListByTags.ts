@@ -14,7 +14,7 @@ const getCardIdListByTags = async (
     .lt("valid_from", new Date().toISOString());
 
   if (error) {
-    throw new Error("ERROR: getCardIdListAction failed");
+    throw new Error("ERROR: getCardIdListByTags failed");
   }
   return Cards;
 };
