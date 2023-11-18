@@ -1,6 +1,6 @@
 "use client";
 
-import { TagStatus } from "@/data/Tag";
+import { TagStatus } from "@/entity/Tag";
 import { Dispatch, SetStateAction, useMemo } from "react";
 import MultiselectTags from "./MultiselectTags";
 import { setAllTagStatus } from "@/entity/util/Tag";

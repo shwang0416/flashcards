@@ -2,7 +2,7 @@
 
 import getLinkedList from "@/util/getLinkedList";
 import { cookies } from "next/headers";
-import { TagStatus } from "@/data/Tag";
+import { TagStatus } from "@/entity/Tag";
 import getUserAction from "./auth/getUserAction";
 import getCardIdListAction from "./getCardIdListAction";
 

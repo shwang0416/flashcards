@@ -2,7 +2,7 @@
 
 import getCardListByTags from "@/adaptor/serverActions/getCardListByTags";
 import MultiSelectTagsController from "@/components/MultiSelectTagsController";
-import { TagStatus } from "@/data/Tag";
+import { TagStatus } from "@/entity/Tag";
 import { setAllTagStatus } from "@/entity/util/Tag";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

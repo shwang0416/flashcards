@@ -1,4 +1,4 @@
-import { TagStatus } from "@/data/Tag";
+import { TagStatus } from "@/entity/Tag";
 import { Card } from "../Card";
 
 export const tagStatusToTags = (src: TagStatus) =>
@@ -19,3 +19,9 @@ export const filterCardsByTags = (cards: Card[], tags: string[]) =>
       (tag) => card.tags && card.tags.length > 0 && card.tags.includes(tag),
     ),
   );
+
+export const setAllTagStatus = (tags: string[], status: boolean): TagStatus =>
+  tags.reduce((acc: TagStatus, tag: string) => {
+    acc[tag] = status;
+    return acc;
+  }, {});

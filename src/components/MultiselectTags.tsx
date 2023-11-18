@@ -1,6 +1,6 @@
 "use client";
 
-import { TagStatus } from "@/data/Tag";
+import { TagStatus } from "@/entity/Tag";
 import SelectTag from "./SelectTag";
 
 type MultiselectTagsProps = {

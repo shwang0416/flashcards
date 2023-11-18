@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import MultiSelectTagsController from "@/components/MultiSelectTagsController";
-import { TagStatus } from "@/data/Tag";
+import { TagStatus } from "@/entity/Tag";
 import { Card } from "@/entity/Card";
 import {
   cardsToTags,
