@@ -1,6 +1,7 @@
 import { ModalContents } from "@/components/Modal";
 
-type Cases = "success" | "error";
+type ErrorFormat = `error${number}${number}${number}`;
+type Cases = "success" | "error" | ErrorFormat;
 type ModalCases = {
   [key in Cases]: ModalContents;
 };
@@ -11,6 +12,14 @@ export const SIGNIN_MODAL_CONTENTS: Partial<ModalCases> = {
     description: [
       "입력한 이메일로 인증 요청을 보냈습니다",
       "메일의 링크를 클릭해 가입을 완료해주세요",
+    ],
+    buttonText: "닫기",
+  },
+  error400: {
+    title: "Invalid login credentials",
+    description: [
+      "로그인 정보가 잘못되었습니다",
+      "아이디 또는 비밀번호를 확인해주세요",
     ],
     buttonText: "닫기",
   },

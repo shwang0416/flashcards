@@ -23,8 +23,14 @@ const Page = () => {
     const { error } = await signInAction({ email, password });
 
     if (error) {
+      const { status } = error;
       console.error(error);
+      if (status === 400) {
+        setModalContents(SIGNIN_MODAL_CONTENTS.error400);
+        return;
+      }
       setModalContents(SIGNIN_MODAL_CONTENTS.error);
+      return;
     } else {
       router.push("/");
     }
