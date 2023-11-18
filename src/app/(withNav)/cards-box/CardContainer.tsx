@@ -1,7 +1,7 @@
 "use client";
 
 import CardItemSkeleton from "@/components/loading/CardItemSkeleton";
-import { FormEvent, Suspense, useState } from "react";
+import { FormEvent, ReactNode, Suspense, useState } from "react";
 import deleteCardsAction from "@/adaptor/serverActions/deleteCardsAction";
 import { useRouter } from "next/navigation";
 import {
@@ -13,6 +13,7 @@ import Link from "next/link";
 import NewCardItem from "./NewCardItem";
 import LinkCardItem from "./LinkCardItem";
 import DeleteCardItem from "./DeleteCardItem";
+import InfoCardItem from "./InfoCardItem";
 
 type Card = {
   question_title: string;
@@ -25,6 +26,8 @@ type Card = {
 type CardContainerProps = {
   cards: Card[];
   deleteMode: boolean;
+  children: ReactNode;
+  noValidCards: boolean;
 };
 
 const data = {
@@ -39,7 +42,12 @@ const data = {
     changeModeText: "카드 관리",
   },
 };
-const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
+const CardContainer = ({
+  cards,
+  deleteMode,
+  children,
+  noValidCards,
+}: CardContainerProps) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCardSelected, setIsCardSelected] = useState(false);
@@ -130,6 +138,7 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
           )}
         </div>
       </div>
+      {children}
       <div className="flex h-full flex-col">
         {deleteMode ? (
           <form
@@ -163,7 +172,24 @@ const CardContainer = ({ cards, deleteMode }: CardContainerProps) => {
           </form>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            <NewCardItem disabled={false} />
+            <NewCardItem />
+            {cards.length === 0 && (
+              <InfoCardItem title="카드가 없습니다">
+                {noValidCards ? (
+                  <p className="inline-flex items-center text-sm">
+                    새로운 카드를 만들어보세요
+                  </p>
+                ) : (
+                  <p className="inline-flex items-center text-sm">
+                    상단의{" "}
+                    <span className="flex h-fit w-fit flex-row gap-x-1 rounded-lg border border-gray-200 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-500">
+                      키워드
+                    </span>{" "}
+                    를 선택해보세요
+                  </p>
+                )}
+              </InfoCardItem>
+            )}
             <Suspense fallback={<CardItemSkeleton />}>
               {cards.map((card: Card) => (
                 <LinkCardItem
