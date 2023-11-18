@@ -25,11 +25,12 @@ const SelectTagCardContainer = ({
   const [tagStatus, setTagStatus] = useState<TagStatus>(
     setAllTagStatus(remoteTags, false),
   );
-
   //   tagStatus로 카드를 필터링해서 넘긴다
   const filteredCards = useMemo(() => {
     const selectedTags = tagStatusToTags(tagStatus);
-    return filterCardsByTags(cards, selectedTags);
+
+    if (selectedTags.length > 0) return filterCardsByTags(cards, selectedTags);
+    return cards;
   }, [cards, tagStatus]);
 
   return (
