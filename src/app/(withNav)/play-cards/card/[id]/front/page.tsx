@@ -1,6 +1,7 @@
 import getCardQuestionAction from "@/adaptor/serverActions/getCardQuestionAction";
 import { marked } from "marked";
 import parse from "html-react-parser";
+import Link from "next/link";
 import AnswerForm from "./AnswerForm";
 import NoCards from "../../../NoCards";
 
@@ -10,7 +11,13 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   if (error) throw new Error("ERROR: getCardQuestionAction failed");
   if (!Cards || Cards.length === 0) {
-    return <NoCards />;
+    return (
+      <NoCards>
+        <Link href="/play-cards" className="button-default">
+          돌아가기
+        </Link>
+      </NoCards>
+    );
   }
 
   const { question_contents: questionContents, question_title: questionTitle } =
