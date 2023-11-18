@@ -115,7 +115,7 @@ const AuthForm = ({ authCallback, buttonText }: AuthFormProps) => {
                 onChange={onPasswordInputChange}
               />
               <button
-                className={`absolute right-4 top-[25%]`}
+                className="absolute right-4 top-[25%]"
                 type="button"
                 onClick={toggleShowPassword}
               >
