@@ -2,13 +2,16 @@ import getCardQuestionAction from "@/adaptor/serverActions/getCardQuestionAction
 import { marked } from "marked";
 import parse from "html-react-parser";
 import AnswerForm from "./AnswerForm";
+import NoCards from "../../../NoCards";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const { data: Cards, error } = await getCardQuestionAction({ cardId: id });
 
   if (error) throw new Error("ERROR: getCardQuestionAction failed");
-  if (!Cards) throw new Error("ERROR: could not find the card by the id");
+  if (!Cards || Cards.length === 0) {
+    return <NoCards />;
+  }
 
   const { question_contents: questionContents, question_title: questionTitle } =
     Cards[0];
