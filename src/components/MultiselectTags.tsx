@@ -29,6 +29,7 @@ const MultiselectTags = ({
       {tags &&
         tags.map((tag) => (
           <SelectTag
+            key={tag}
             textContent={tag}
             isSelected={tagStatus[tag]}
             toggleIsSelected={toggleIsSelected}
