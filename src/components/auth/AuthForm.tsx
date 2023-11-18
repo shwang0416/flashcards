@@ -14,38 +14,35 @@ type AuthFormProps = {
     password: string;
   }) => Promise<void>;
   buttonText: string;
+  validateEmail: (email: string) => boolean;
+  validatePassword: (password: string) => boolean;
+  errorMessages: ErrorTypes;
 };
 
-// const ERRORS = {
-//   INVALID_EMAIL: {
-//     message: "올바른 형식의 이메일을 입력해주세요",
-//   },
-//   INVALID_PASSWORD: {
-//     message: "비밀번호는 영어소문자, 숫자 포함 8자 이상이어야 합니다",
-//   },
-// };
-const validateEmail = (email: string) => {
-  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-    return true;
-  }
-  return false;
-};
-
-const validatePassword = (password: string) => {
-  //영어소문자, 숫자 포함 8자 이상의 비밀번호
-  if (password.match(/(?=.*\d)(?=.*[a-z]).{8,}/)) return true;
-  return false;
-};
-
-const AuthForm = ({ authCallback, buttonText }: AuthFormProps) => {
+const AuthForm = ({
+  authCallback,
+  buttonText,
+  validateEmail,
+  validatePassword,
+  errorMessages,
+}: AuthFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isEmailUIValid, setIsEmailUIValid] = useState(true);
+  const [isPasswordUIValid, setIsPasswordUIValid] = useState(true);
 
+  const { INVALID_PASSWORD, INVALID_EMAIL } = errorMessages;
   const isButtonActive = useMemo(
     () => validateEmail(email) && validatePassword(password),
     [email, password],
   );
+
+  // const isValid = () => {
+  //   if (validateEmail(email)) {
+  //     setIsEmailUIValid(false);
+  //   }
+  // };
 
   const formHandler = async (formData: FormData) => {
     const email = formData.get("email") as string;
@@ -88,9 +85,19 @@ const AuthForm = ({ authCallback, buttonText }: AuthFormProps) => {
               id="email"
               name="email"
               type="text"
-              className="h-12 rounded-lg"
+              className={`h-12 rounded-lg border-2 border-transparent ${
+                !isEmailUIValid ? "border-red-500 outline-red-500" : ""
+              }`}
               onChange={onEmailInputChange}
+              onBlur={() => {
+                setIsEmailUIValid(validateEmail(email));
+              }}
             />
+            <div className="h-6 px-2 py-1">
+              {!isEmailUIValid && (
+                <p className="text-xs text-red-500">{INVALID_EMAIL.message}</p>
+              )}
+            </div>
           </div>
           <div className="flex flex-col gap-1">
             <label
@@ -111,11 +118,17 @@ const AuthForm = ({ authCallback, buttonText }: AuthFormProps) => {
                 id="password"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                className="h-12 w-full rounded-lg"
+                className={`h-12 w-full rounded-lg border-2 border-transparent ${
+                  !isPasswordUIValid ? "border-red-500 outline-red-500" : ""
+                }`}
                 onChange={onPasswordInputChange}
+                onBlur={() => {
+                  console.log("on blur");
+                  setIsPasswordUIValid(validatePassword(password));
+                }}
               />
               <button
-                className="absolute right-4 top-[25%]"
+                className="absolute right-4 top-[17%]"
                 type="button"
                 onClick={toggleShowPassword}
               >
@@ -125,6 +138,13 @@ const AuthForm = ({ authCallback, buttonText }: AuthFormProps) => {
                   }`}
                 />
               </button>
+              <div className="h-6 px-2 py-1">
+                {!isPasswordUIValid && (
+                  <p className="text-xs text-red-500">
+                    {INVALID_PASSWORD.message}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </div>

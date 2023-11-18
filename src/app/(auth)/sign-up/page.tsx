@@ -6,6 +6,7 @@ import { SIGNUP_MODAL_CONTENTS } from "@/data/modalContents";
 import { createBrowserClient } from "@supabase/ssr";
 import Link from "next/link";
 import { useState } from "react";
+import { SIGN_UP_ERRORS, validateEmail, validatePassword } from "./util";
 
 const Page = () => {
   const [modalContents, setModalContents] = useState<ModalContents | null>();
@@ -46,7 +47,13 @@ const Page = () => {
       )}
       <div className="flex h-full flex-col items-center justify-center gap-10">
         <h2 className="text-xl">회원가입 페이지</h2>
-        <AuthForm authCallback={formHandler} buttonText="회원 가입" />
+        <AuthForm
+          authCallback={formHandler}
+          buttonText="회원 가입"
+          validateEmail={validateEmail}
+          validatePassword={validatePassword}
+          errorMessages={SIGN_UP_ERRORS}
+        />
         <div className="flex flex-row gap-x-2">
           <span>이미 계정이 있으신가요? </span>
           <Link href="/sign-in" className="text-pink-500 underline">
