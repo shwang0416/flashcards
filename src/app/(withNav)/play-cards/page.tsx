@@ -1,5 +1,6 @@
 import getCardTags from "@/adaptor/serverActions/getCardTags";
 import { cardsToTags } from "@/entity/util/Tag";
+import Link from "next/link";
 import SelectTagWithButton from "./SelectTagWithButton";
 
 const Page = async () => {
@@ -7,8 +8,14 @@ const Page = async () => {
 
   if (!data || data.length === 0)
     return (
-      <div className="">
-        카드가 없습니다 Cards Box에서 새로운 카드를 등록해보세요
+      <div className="jus roundedborder-2 flex h-full flex-col items-center justify-center gap-10 rounded-xl border-2 border-slate-300">
+        <h4 className="text-4xl font-semibold">카드가 없습니다</h4>
+        <p className="text-lg">
+          <Link href="/cards-box" className="text-pink-500 underline">
+            Cards Box
+          </Link>
+          에서 새로운 카드를 등록해보세요
+        </p>
       </div>
     );
 

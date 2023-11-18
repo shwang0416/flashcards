@@ -36,7 +36,7 @@ const AuthForm = ({
   const { INVALID_PASSWORD, INVALID_EMAIL } = errorMessages;
   const isButtonActive = useMemo(
     () => validateEmail(email) && validatePassword(password),
-    [email, password],
+    [email, password, validateEmail, validatePassword],
   );
 
   // const isValid = () => {
