@@ -27,9 +27,9 @@ const getCardIdListAction = async ({
   const cardList = UserCards?.map((elem) => elem.card_id);
 
   if (tags && tags.length > 0) {
-    return await getCardIdListByTags(cardList, tags);
+    return getCardIdListByTags(cardList, tags);
   }
-  return await getCardIdListByAllTags(cardList);
+  return getCardIdListByAllTags(cardList);
 };
 
 export default getCardIdListAction;
