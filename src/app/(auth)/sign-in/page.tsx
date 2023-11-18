@@ -30,7 +30,6 @@ const Page = () => {
         return;
       }
       setModalContents(SIGNIN_MODAL_CONTENTS.error);
-      return;
     } else {
       router.push("/");
     }

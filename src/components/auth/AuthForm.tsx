@@ -1,5 +1,6 @@
 "use client";
 
+import { ErrorTypes } from "@/app/(auth)/types";
 import debounce from "@/util/debounce";
 import { EyeIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
