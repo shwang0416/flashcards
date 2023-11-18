@@ -2,8 +2,8 @@
 
 import { TagStatus } from "@/entity/Tag";
 import { Dispatch, SetStateAction, useMemo } from "react";
-import MultiselectTags from "./MultiselectTags";
 import { setAllTagStatus } from "@/entity/util/Tag";
+import MultiselectTags from "./MultiselectTags";
 
 type MultiSelectTagsControllerProps = {
   tags: string[];
