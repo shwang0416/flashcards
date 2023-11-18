@@ -65,11 +65,13 @@ const ModalPage = async ({
     questionTitle: string;
     questionContents: string;
     answerContents: string;
+    tags: string[];
   };
   const createCard = async ({
     questionTitle,
     questionContents,
     answerContents,
+    tags,
   }: CreateCardProps) => {
     "use server";
 
@@ -84,8 +86,8 @@ const ModalPage = async ({
       questionTitle,
       questionContents,
       answerContents,
+      tags,
     });
-    console.log("createCardAction");
     revalidatePath("/cards-box");
     redirect("/cards-box");
   };

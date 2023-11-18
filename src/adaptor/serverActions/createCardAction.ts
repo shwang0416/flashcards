@@ -8,6 +8,7 @@ export type CreateCardProps = {
   questionTitle: string;
   questionContents: string;
   answerContents: string;
+  tags: string[];
 };
 
 const createCardAction = async ({
@@ -16,6 +17,7 @@ const createCardAction = async ({
   questionTitle,
   questionContents,
   answerContents,
+  tags,
 }: CreateCardProps) => {
   try {
     const result = await supabase.from("Card").insert([
@@ -24,6 +26,7 @@ const createCardAction = async ({
         question_title: questionTitle,
         question_contents: questionContents,
         answer_contents: answerContents,
+        tags,
       },
     ]);
     if (result.error) {
@@ -35,6 +38,7 @@ const createCardAction = async ({
         card_id: cardId,
       },
     ]);
+
     if (error) {
       console.log(error);
     }
