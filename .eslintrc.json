@@ -77,6 +77,7 @@
     "no-underscore-dangle": "off",
     "import/prefer-default-export": "off",
     "spaced-comment": "off",
+    "no-useless-escape": "off",
     "react/jsx-no-bind": [
       1,
       {
