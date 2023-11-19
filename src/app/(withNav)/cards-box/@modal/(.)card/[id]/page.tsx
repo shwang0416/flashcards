@@ -1,4 +1,3 @@
-import Dialog from "@/components/Dialog";
 import getUserAction from "@/adaptor/serverActions/auth/getUserAction";
 import createCardAction from "@/adaptor/serverActions/createCardAction";
 import { generateId } from "@/util/idGenerator";
@@ -8,8 +7,6 @@ import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
 import Modal from "@/components/Modal";
 import { CARDS_BOX_MODAL_CONTENTS } from "@/data/modalContents";
 import updateCardAction from "@/adaptor/serverActions/updateCardAction";
-import { Suspense } from "react";
-import LoadingSpinner from "@/components/loading/LoadingSpinner";
 import CardDetail from "./CardDetail";
 import CardForm from "./CardForm";
 
@@ -92,11 +89,7 @@ const ModalPage = async ({
     redirect("/cards-box");
   };
   if (id === "create-new-card")
-    return (
-      <Dialog>
-        <CardForm cardId={id} submitCallback={createCard} />
-      </Dialog>
-    );
+    return <CardForm cardId={id} submitCallback={createCard} />;
   if (Cards.length === 0) return <Modal {...CARDS_BOX_MODAL_CONTENTS.error} />;
   const {
     question_title: questionTitle,
@@ -105,29 +98,26 @@ const ModalPage = async ({
     tags,
   } = Cards[0];
 
+  if (edit) {
+    return (
+      <CardForm
+        cardId={id}
+        submitCallback={updateCard}
+        questionTitle={questionTitle}
+        questionContents={questionContents}
+        answerContents={answerContents}
+        tags={tags}
+      />
+    );
+  }
   return (
-    <Dialog>
-      <Suspense fallback={<LoadingSpinner />}>
-        {edit ? (
-          <CardForm
-            cardId={id}
-            submitCallback={updateCard}
-            questionTitle={questionTitle}
-            questionContents={questionContents}
-            answerContents={answerContents}
-            tags={tags}
-          />
-        ) : (
-          <CardDetail
-            cardId={id}
-            questionTitle={questionTitle}
-            questionContents={questionContents}
-            answerContents={answerContents}
-            tags={tags}
-          />
-        )}
-      </Suspense>
-    </Dialog>
+    <CardDetail
+      cardId={id}
+      questionTitle={questionTitle}
+      questionContents={questionContents}
+      answerContents={answerContents}
+      tags={tags}
+    />
   );
 };
 
