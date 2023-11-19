@@ -8,13 +8,11 @@ const Page = async ({ searchParams }: { searchParams: { d: boolean } }) => {
   const tags = cardsToTags(cards);
 
   return (
-    <div className="flex h-full flex-col gap-4 pt-4">
-      <SelectTagCardContainer
-        cards={cards}
-        remoteTags={tags}
-        deleteMode={deleteMode}
-      />
-    </div>
+    <SelectTagCardContainer
+      cards={cards}
+      remoteTags={tags}
+      deleteMode={deleteMode}
+    />
   );
 };
 

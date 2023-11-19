@@ -60,23 +60,21 @@ const SelectTagCardContainer = ({
   // );
 
   return (
-    <div className="flex h-full flex-col gap-4 pt-4">
-      <CardsBoxController
-        cards={filteredCards}
-        noValidCards={noValidCards}
-        deleteMode={deleteMode}
-      >
-        {!noValidCards && (
-          <div className="rounded-xl bg-white p-6 py-6">
-            <MultiSelectTagsController
-              tags={remoteTags}
-              tagStatus={tagStatus}
-              updateTagStatus={setTagStatus}
-            />
-          </div>
-        )}
-      </CardsBoxController>
-    </div>
+    <CardsBoxController
+      cards={filteredCards}
+      noValidCards={noValidCards}
+      deleteMode={deleteMode}
+    >
+      {!noValidCards && (
+        <div className="rounded-xl bg-white p-6 py-6">
+          <MultiSelectTagsController
+            tags={remoteTags}
+            tagStatus={tagStatus}
+            updateTagStatus={setTagStatus}
+          />
+        </div>
+      )}
+    </CardsBoxController>
   );
 };
 
