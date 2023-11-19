@@ -9,7 +9,7 @@ import {
   setAllTagStatus,
   tagStatusToTags,
 } from "@/entity/util/Tag";
-import CardContainer from "./CardContainer";
+import CardsBox from "./CardsBox";
 
 type SelectTagCardContainerProps = {
   cards: Card[];
@@ -61,25 +61,11 @@ const SelectTagCardContainer = ({
 
   return (
     <div className="flex h-full flex-col gap-4 pt-4">
-      {/* FIXME: 카드 없는거 UI 어떻게할까 */}
-      <CardContainer
+      <CardsBox
         cards={filteredCards}
         noValidCards={noValidCards}
         deleteMode={deleteMode}
       >
-        {/* valid 카드가 하나도 없는 경우 */}
-        {/* {noValidCards && (
-          <div className="rounded-xl bg-white p-6 py-6">
-            <NoCards>
-              <p className="text-lg">
-                <Link href="/cards-box" className="text-pink-500 underline">
-                  Cards Box
-                </Link>
-                에서 새로운 카드를 등록해보세요
-              </p>
-            </NoCards>
-          </div>
-        )} */}
         {!noValidCards && (
           <div className="rounded-xl bg-white p-6 py-6">
             <MultiSelectTagsController
@@ -89,7 +75,7 @@ const SelectTagCardContainer = ({
             />
           </div>
         )}
-      </CardContainer>
+      </CardsBox>
     </div>
   );
 };
