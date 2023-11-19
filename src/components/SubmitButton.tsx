@@ -24,7 +24,9 @@ const SubmitButton = ({ active, inactive, disabled }: SubmitButtonProps) => {
       aria-disabled={status.pending || disabled}
       type="submit"
       className={`w-full cursor-pointer rounded-xl px-6 py-3 text-[24px] font-semibold text-white  ${
-        status.pending ? "bg-slate-300" : "bg-pink-300 hover:bg-pink-400"
+        status.pending || disabled
+          ? "bg-slate-300"
+          : "bg-pink-300 hover:bg-pink-400"
       }`}
     >
       {status.pending
