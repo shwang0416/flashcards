@@ -1,10 +1,10 @@
 "use client";
 
 import { ReactNode } from "react";
+import { Card } from "@/entity/Card";
 import CardsBoxHeader from "./CardsBoxHeader";
 import DeleteCardsBox from "./DeleteCardsBox";
 import ManageCardsBox from "./ManageCardsBox";
-import { Card } from "@/entity/Card";
 
 type CardContainerProps = {
   cards: Card[];
@@ -18,20 +18,18 @@ const CardContainer = ({
   deleteMode,
   children,
   noValidCards,
-}: CardContainerProps) => {
-  return (
-    <>
-      <CardsBoxHeader status={deleteMode ? "delete" : "manage"} />
-      {children}
-      <div className="flex h-full flex-col">
-        {deleteMode ? (
-          <DeleteCardsBox cards={cards} />
-        ) : (
-          <ManageCardsBox cards={cards} noValidCards={noValidCards} />
-        )}
-      </div>
-    </>
-  );
-};
+}: CardContainerProps) => (
+  <>
+    <CardsBoxHeader status={deleteMode ? "delete" : "manage"} />
+    {children}
+    <div className="flex h-full flex-col">
+      {deleteMode ? (
+        <DeleteCardsBox cards={cards} />
+      ) : (
+        <ManageCardsBox cards={cards} noValidCards={noValidCards} />
+      )}
+    </div>
+  </>
+);
 
 export default CardContainer;

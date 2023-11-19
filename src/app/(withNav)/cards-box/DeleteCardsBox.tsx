@@ -4,9 +4,9 @@ import { FormEvent, useState } from "react";
 import deleteCardsAction from "@/adaptor/serverActions/deleteCardsAction";
 import { useRouter } from "next/navigation";
 import SubmitButton from "@/components/SubmitButton";
+import { Card } from "@/entity/Card";
 import NewCardItem from "./NewCardItem";
 import DeleteCardItem from "./DeleteCardItem";
-import { Card } from "@/entity/Card";
 
 type DeleteCardsBoxProps = {
   cards: Card[];

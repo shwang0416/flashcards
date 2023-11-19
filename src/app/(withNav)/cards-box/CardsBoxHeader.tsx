@@ -6,7 +6,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-type CardsBoxHeader = {
+type CardsBoxHeaderProps = {
   status: "delete" | "manage";
 };
 
@@ -23,7 +23,7 @@ const data = {
   },
 };
 
-const CardsBoxHeader = ({ status }: CardsBoxHeader) => {
+const CardsBoxHeader = ({ status }: CardsBoxHeaderProps) => {
   const { title, description, changeModeText } = data[status];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
