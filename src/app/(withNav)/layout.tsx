@@ -7,7 +7,7 @@ import {
 import Link from "next/link";
 import LogoutForm from "@/components/auth/LogoutForm";
 import { Suspense } from "react";
-import LoadingSpinner from "@/components/loading/LoadingSpinner";
+import LoadingSpinnerBox from "@/components/loading/LoadingSpinnerBox";
 
 export default function RootLayout({
   children,
@@ -44,7 +44,7 @@ export default function RootLayout({
         </div>
       </div>
 
-      <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+      <Suspense fallback={<LoadingSpinnerBox />}>{children}</Suspense>
     </div>
   );
 }

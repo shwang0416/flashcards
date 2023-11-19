@@ -1,6 +1,6 @@
-import BigLoadingSpinner from "@/components/loading/BigLoadingSpinner";
+import BigLoadingSpinner from "./BigLoadingSpinner";
 
-const Loading = () => (
+const LoadingSpinnerBox = () => (
   <div
     role="status"
     className="flex h-full w-full animate-pulse items-center justify-center rounded-xl bg-white"
@@ -13,4 +13,4 @@ const Loading = () => (
   </div>
 );
 
-export default Loading;
+export default LoadingSpinnerBox;
