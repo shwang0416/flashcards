@@ -29,11 +29,11 @@ const TagForm = ({ localTags, updateLocalTags }: TagFormProps) => {
 
     const target = event.target as HTMLTextAreaElement;
     const newTag = target.value;
-    const blank_pattern = /^\s+|\s+$/g;
-    if (newTag.replace(blank_pattern, "") === "") return;
 
-    if (hasLocalTags) updateLocalTags([...localTags, newTag]);
-    else updateLocalTags([newTag]);
+    const trimedTag = newTag.trim();
+    if (trimedTag === "") return;
+    if (hasLocalTags) updateLocalTags([...localTags, trimedTag]);
+    else updateLocalTags([trimedTag]);
     target.value = "";
   };
 
