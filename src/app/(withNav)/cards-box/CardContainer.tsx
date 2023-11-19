@@ -10,6 +10,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import SubmitButton from "@/components/SubmitButton";
 import NewCardItem from "./NewCardItem";
 import LinkCardItem from "./LinkCardItem";
 import DeleteCardItem from "./DeleteCardItem";
@@ -161,13 +162,11 @@ const CardContainer = ({
               </Suspense>
             </div>
             <div className="flex flex-grow items-end">
-              <button
-                type="submit"
+              <SubmitButton
+                active={{ buttonText: "삭제하기" }}
+                inactive={{ buttonText: "삭제 중..." }}
                 disabled={!isCardSelected}
-                className="button-default w-full cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-center text-[24px] font-semibold text-white hover:bg-pink-400 disabled:bg-slate-300"
-              >
-                삭제하기
-              </button>
+              />
             </div>
           </form>
         ) : (

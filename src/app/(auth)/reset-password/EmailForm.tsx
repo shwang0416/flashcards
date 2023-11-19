@@ -1,5 +1,7 @@
 "use client";
 
+import SubmitButton from "@/components/SubmitButton";
+
 type EmailFormProps = {
   authCallback: ({ email }: { email: string }) => Promise<void>;
   buttonText: string;
@@ -27,11 +29,7 @@ const EmailForm = ({ authCallback, buttonText }: EmailFormProps) => {
           />
         </div>
         <div className="">
-          <input
-            type="submit"
-            value={buttonText}
-            className="font-semibold w-full bg-pink-300 p-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
-          />
+          <SubmitButton active={{ buttonText }} inactive={{}} />
         </div>
       </form>
     </div>

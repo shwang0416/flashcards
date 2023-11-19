@@ -5,6 +5,7 @@ import debounce from "@/util/debounce";
 import { EyeIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { ChangeEvent, useMemo, useState } from "react";
+import SubmitButton from "../SubmitButton";
 
 type AuthFormProps = {
   authCallback: ({
@@ -151,12 +152,10 @@ const AuthForm = ({
         </div>
 
         <div className="">
-          <input
-            type="submit"
-            value={buttonText}
+          <SubmitButton
+            active={{ buttonText }}
+            inactive={{}}
             disabled={!isButtonActive}
-            className={`w-full cursor-pointer rounded-xl bg-pink-300 p-3 font-semibold text-white hover:bg-pink-400 disabled:bg-gray-300
-            `}
           />
         </div>
       </form>

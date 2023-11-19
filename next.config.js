@@ -2,6 +2,8 @@
 const nextConfig = {
   experimental: {
     serverActions: true,
+    useFormStatus: true,
+    useFormState: true,
   },
 };
 

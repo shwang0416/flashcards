@@ -6,6 +6,7 @@ import { generateId } from "@/util/idGenerator";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import MarkdownTextArea from "@/components/MarkdownTextArea";
+import SubmitButton from "@/components/SubmitButton";
 
 type AnswerFormProps = {
   cardId: string;
@@ -48,10 +49,9 @@ const AnswerForm = ({ cardId }: AnswerFormProps) => {
       action={formAction}
       className="flex h-1/2 w-full flex-col-reverse gap-4"
     >
-      <input
-        type="submit"
-        value="정답 확인"
-        className=" cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-[24px] font-semibold text-white hover:bg-pink-400"
+      <SubmitButton
+        active={{ buttonText: "정답 확인" }}
+        inactive={{ buttonText: "제출 중..." }}
       />
       <MarkdownTextArea
         name="answer_contents"

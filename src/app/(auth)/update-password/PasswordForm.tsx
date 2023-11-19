@@ -1,5 +1,7 @@
 "use client";
 
+import SubmitButton from "@/components/SubmitButton";
+
 type PasswordFormProps = {
   authCallback: ({ password }: { password: string }) => Promise<void>;
   buttonText: string;
@@ -20,11 +22,7 @@ const PasswordForm = ({ authCallback, buttonText }: PasswordFormProps) => {
           <input id="password" name="password" type="text" />
         </div>
         <div className="">
-          <input
-            type="submit"
-            value={buttonText}
-            className="font-semibold bg-pink-300 p-3 rounded-xl hover:bg-pink-400 cursor-pointer text-white"
-          />
+          <SubmitButton active={{ buttonText }} inactive={{}} />
         </div>
       </form>
     </div>

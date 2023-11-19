@@ -2,6 +2,7 @@
 
 import updateReviewAction from "@/adaptor/serverActions/updateReviewAction";
 import MarkdownTextArea from "@/components/MarkdownTextArea";
+import SubmitButton from "@/components/SubmitButton";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -46,12 +47,7 @@ const ReviewForm = ({ noteId, nextCardId }: ReviewFormProps) => {
       action={formAction}
       className="flex h-1/2 w-full flex-col-reverse gap-4"
     >
-      <input
-        type="submit"
-        value="다음으로"
-        className=" cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-[24px] font-semibold text-white hover:bg-pink-400"
-      />
-
+      <SubmitButton active={{ buttonText: "다음으로" }} inactive={{}} />
       <MarkdownTextArea
         name="review_contents"
         id="review_contents"
