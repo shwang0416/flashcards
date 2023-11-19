@@ -9,7 +9,7 @@ import {
   setAllTagStatus,
   tagStatusToTags,
 } from "@/entity/util/Tag";
-import CardsBox from "./CardsBox";
+import CardsBoxController from "./CardContainer";
 
 type SelectTagCardContainerProps = {
   cards: Card[];
@@ -61,7 +61,7 @@ const SelectTagCardContainer = ({
 
   return (
     <div className="flex h-full flex-col gap-4 pt-4">
-      <CardsBox
+      <CardsBoxController
         cards={filteredCards}
         noValidCards={noValidCards}
         deleteMode={deleteMode}
@@ -75,7 +75,7 @@ const SelectTagCardContainer = ({
             />
           </div>
         )}
-      </CardsBox>
+      </CardsBoxController>
     </div>
   );
 };
