@@ -65,7 +65,7 @@ const CardContainer = ({
   };
 
   const onDeleteHandler = async (formData: FormData) => {
-    const checkedCardIs = Array.from(formData.entries()).map((pair) => {
+    const checkedCardIds = Array.from(formData.entries()).map((pair) => {
       const key = pair[0];
       const value = pair[1];
       if (value === "on" && key.startsWith("checkbox")) {
@@ -74,7 +74,7 @@ const CardContainer = ({
       return null;
     });
 
-    if (!checkedCardIs || checkedCardIs.length === 0) {
+    if (!checkedCardIds || checkedCardIds.length === 0) {
       alert("삭제할 카드를 선택해주세요");
       return;
     }
@@ -85,7 +85,7 @@ const CardContainer = ({
     )
       return;
 
-    await deleteCardsAction(checkedCardIs as string[]);
+    await deleteCardsAction(checkedCardIds as string[]);
 
     alert("카드 삭제가 완료되었습니다.");
     router.refresh();
