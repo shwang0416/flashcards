@@ -2,7 +2,10 @@
 
 import MarkdownTextArea from "@/components/MarkdownTextArea";
 import { useState } from "react";
+import { useFormState } from "react-dom";
+import SubmitButton from "@/components/SubmitButton";
 import TagForm from "./TagForm";
+// import timer from "@/util/timer";
 
 type CardFormProps = {
   questionTitle: string;
@@ -21,6 +24,11 @@ type Props = {
   }: CardFormProps) => Promise<void>;
 } & Partial<CardFormProps>;
 
+type State = {
+  message: string | null;
+  type: string | null;
+};
+
 const CardForm = ({
   cardId,
   questionTitle,
@@ -31,14 +39,17 @@ const CardForm = ({
 }: Props) => {
   const [localTags, setLocalTags] = useState(tags as string[]);
 
-  const onSubmitHandler = async (formData: FormData) => {
+  const onSubmitHandler = async (_prevState: State, formData: FormData) => {
+    // await timer(3000);
     const questionTitle = formData.get("question_title") as string;
     const questionContents = formData.get("question_contents") as string;
     const answerContents = formData.get("answer") as string;
 
     if (!questionTitle || !questionContents || !answerContents) {
-      alert("내용을 모두 입력해주세요");
-      return;
+      return {
+        message: "내용을 모두 입력해주세요",
+        type: "error",
+      };
     }
 
     // FIXME: loading state
@@ -49,7 +60,18 @@ const CardForm = ({
       answerContents,
       tags: localTags,
     });
+
+    return {
+      message: "제출에 성공했습니다",
+      type: "success",
+    };
   };
+
+  const [state, dispatch] = useFormState(onSubmitHandler, {
+    message: null,
+    type: null,
+  });
+  console.log(state);
 
   const updateLocalTags = (tagList: string[]) => {
     setLocalTags(tagList);
@@ -57,7 +79,7 @@ const CardForm = ({
   return (
     <form
       id={`card_${cardId}`}
-      action={onSubmitHandler}
+      action={dispatch}
       className="flex h-full w-full flex-col gap-y-2 overflow-hidden rounded-xl"
     >
       <input
@@ -91,10 +113,9 @@ const CardForm = ({
         </MarkdownTextArea>
       </div>
 
-      <input
-        type="submit"
-        value="Submit"
-        className=" cursor-pointer rounded-xl bg-pink-300 px-6 py-3 text-[24px] font-semibold text-white hover:bg-pink-400"
+      <SubmitButton
+        active={{ buttonText: "Submit" }}
+        inactive={{ buttonText: "Submitting..." }}
       />
     </form>
   );
