@@ -22,7 +22,7 @@ const MultiselectTags = ({
     <h4 className="pb-8 text-xl font-semibold">키워드로 검색하기</h4>
     <div className="flex w-full flex-row flex-wrap gap-1">
       <SelectTag
-        textContent="전체보기"
+        textContent="모두 선택"
         isSelected={isAllTagSelected}
         toggleIsSelected={toggleSelectAll}
       />
