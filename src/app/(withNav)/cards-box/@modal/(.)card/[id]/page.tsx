@@ -1,8 +1,6 @@
 import getUserAction from "@/adaptor/serverActions/auth/getUserAction";
 import createCardAction from "@/adaptor/serverActions/createCardAction";
 import { generateId } from "@/util/idGenerator";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import getCardDetailAction from "@/adaptor/serverActions/getCardDetail";
 import Modal from "@/components/Modal";
 import { CARDS_BOX_MODAL_CONTENTS } from "@/data/modalContents";
@@ -54,8 +52,6 @@ const ModalPage = async ({
     // revalidatePath(`/cards-box/${id}?edit=true`);
     // revalidatePath(`/cards-box/${id}`);
     // revalidatePath("/cards-box");
-    revalidatePath(`/cards-box/@modal/${id}`, "page");
-    redirect("/cards-box");
   };
 
   type CreateCardProps = {
@@ -85,11 +81,11 @@ const ModalPage = async ({
       answerContents,
       tags,
     });
-    revalidatePath("/cards-box");
-    redirect("/cards-box");
   };
   if (id === "create-new-card")
-    return <CardForm cardId={id} submitCallback={createCard} />;
+    return (
+      <CardForm cardId={id} submitCallback={createCard} nextPath="/cards-box" />
+    );
   if (Cards.length === 0) return <Modal {...CARDS_BOX_MODAL_CONTENTS.error} />;
   const {
     question_title: questionTitle,
@@ -107,6 +103,7 @@ const ModalPage = async ({
         questionContents={questionContents}
         answerContents={answerContents}
         tags={tags}
+        nextPath="/cards-box"
       />
     );
   }

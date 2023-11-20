@@ -1,13 +1,16 @@
 "use client";
 
 import MarkdownTextArea from "@/components/MarkdownTextArea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import SubmitButton from "@/components/SubmitButton";
+import timer from "@/util/timer";
+import { useRouter } from "next/navigation";
+import customRevalidatePath from "@/adaptor/serverActions/utils/customRevalidatePath";
 import TagForm from "./TagForm";
-// import timer from "@/util/timer";
+import SubmitSuccess from "./SubmitSuccess";
 
-type CardFormProps = {
+type CardFormTypes = {
   questionTitle: string;
   questionContents: string;
   answerContents: string;
@@ -16,13 +19,14 @@ type CardFormProps = {
 
 type Props = {
   cardId: string;
+  nextPath: string;
   submitCallback: ({
     questionTitle,
     questionContents,
     answerContents,
     tags,
-  }: CardFormProps) => Promise<void>;
-} & Partial<CardFormProps>;
+  }: CardFormTypes) => Promise<void>;
+} & Partial<CardFormTypes>;
 
 type State = {
   message: string | null;
@@ -36,23 +40,28 @@ const CardForm = ({
   answerContents,
   submitCallback,
   tags,
+  nextPath,
 }: Props) => {
   const [localTags, setLocalTags] = useState(tags as string[]);
+  const router = useRouter();
 
-  const onSubmitHandler = async (_prevState: State, formData: FormData) => {
-    // await timer(3000);
+  const onSubmitHandler = async (_: State, formData: FormData) => {
     const questionTitle = formData.get("question_title") as string;
     const questionContents = formData.get("question_contents") as string;
     const answerContents = formData.get("answer") as string;
 
-    if (!questionTitle || !questionContents || !answerContents) {
+    if (
+      !questionTitle ||
+      !questionContents ||
+      !answerContents ||
+      !localTags ||
+      localTags.length === 0
+    ) {
       return {
         message: "내용을 모두 입력해주세요",
         type: "error",
       };
     }
-
-    // FIXME: loading state
 
     await submitCallback({
       questionTitle,
@@ -71,11 +80,24 @@ const CardForm = ({
     message: null,
     type: null,
   });
-  console.log(state);
 
   const updateLocalTags = (tagList: string[]) => {
     setLocalTags(tagList);
   };
+
+  useEffect(() => {
+    if (state.type !== "success") return;
+
+    const goCardBox = async () => {
+      await timer(1500);
+      customRevalidatePath(nextPath);
+      router.push(nextPath);
+    };
+
+    goCardBox();
+  }, [state, nextPath, router]);
+
+  if (state.type === "success") return <SubmitSuccess />;
   return (
     <form
       id={`card_${cardId}`}
