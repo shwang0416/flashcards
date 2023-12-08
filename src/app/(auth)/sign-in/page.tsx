@@ -7,7 +7,7 @@ import { SIGNIN_MODAL_CONTENTS } from "@/data/modalContents";
 import { useRouter } from "next/navigation";
 import signInAction from "@/adaptor/serverActions/auth/signinAction";
 import AuthForm from "../../../components/auth/AuthForm";
-import { SIGN_IN_ERRORS, validateEmail, validatePassword } from "./util";
+import { validateEmail, validatePassword } from "../util";
 
 const Page = () => {
   const [modalContents, setModalContents] = useState<ModalContents | null>();
@@ -50,7 +50,6 @@ const Page = () => {
           buttonText="로그인"
           validateEmail={validateEmail}
           validatePassword={validatePassword}
-          errorMessages={SIGN_IN_ERRORS}
         />
         <div className="flex flex-row gap-x-2">
           <span>계정이 없으신가요? </span>
