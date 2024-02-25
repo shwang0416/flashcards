@@ -14,6 +14,10 @@ body {
   @apply cursor-pointer rounded-xl bg-pink-300 px-6 py-3 font-semibold text-white hover:bg-pink-400;
 }
 
+.button-default:disabled {
+  @apply bg-slate-300;
+}
+
 h1 {
   @apply text-3xl leading-[3.5rem];
 }
@@ -31,7 +35,7 @@ code {
 }
 
 pre {
-  @apply max-h-[50%] overflow-auto rounded-lg border border-gray-300 bg-pink-50 p-4 text-sm;
+  @apply overflow-auto rounded-lg border border-gray-300 bg-pink-50 p-4 text-sm;
 }
 
 pre code {
