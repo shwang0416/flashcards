@@ -31,8 +31,8 @@ const PasswordForm = ({
     await authCallback({ password });
   };
   return (
-    <div className="div">
-      <form action={formHandler}>
+    <div className="w-80">
+      <form action={formHandler} className="flex flex-col gap-16">
         <div className="">
           <PasswordInput
             errorUI={INVALID_PASSWORD}
