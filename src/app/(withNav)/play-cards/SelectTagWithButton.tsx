@@ -5,12 +5,14 @@ import MultiSelectTagsController from "@/components/MultiSelectTagsController";
 import { TagStatus } from "@/entity/Tag";
 import { setAllTagStatus } from "@/entity/util/Tag";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 type SelectTagWithButtonProps = {
   tags: string[];
   buttonText: string;
 };
+
+const checkIfAnyTrue = (obj: Object) => Object.values(obj).includes(true);
 
 const SelectTagWithButton = ({
   tags,
@@ -18,9 +20,10 @@ const SelectTagWithButton = ({
 }: SelectTagWithButtonProps) => {
   const router = useRouter();
   const [tagStatus, setTagStatus] = useState<TagStatus>(
-    setAllTagStatus(tags, false),
+    setAllTagStatus(tags, true),
   );
 
+  const disabled = useMemo(() => !checkIfAnyTrue(tagStatus), [tagStatus]);
   const onClickHandler = async (tagStatus: TagStatus) => {
     const firstCardId = await getCardListByTags(tagStatus);
     router.push(`/play-cards/card/${firstCardId}`);
@@ -35,6 +38,7 @@ const SelectTagWithButton = ({
       />
       <button
         type="button"
+        disabled={disabled}
         className="button-default"
         onClick={() => onClickHandler(tagStatus)}
       >
