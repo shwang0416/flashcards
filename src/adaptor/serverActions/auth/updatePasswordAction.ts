@@ -24,9 +24,13 @@ const updatePasswordAction = async ({ password }: { password: string }) => {
     },
   );
 
-  return supabase.auth.updateUser({
+  const { error } = await supabase.auth.updateUser({
     password,
   });
+
+  if (error) {
+    throw new Error("updatePasswordAction failed");
+  }
 };
 
 export default updatePasswordAction;

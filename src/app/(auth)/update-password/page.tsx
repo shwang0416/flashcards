@@ -6,13 +6,15 @@ import { UPDATE_PASSWORD_MODAL_CONTENTS } from "@/data/modalContents";
 import updatePasswordAction from "@/adaptor/serverActions/auth/updatePasswordAction";
 import PasswordForm from "./PasswordForm";
 import { validatePassword } from "../util";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [modalContents, setModalContents] = useState<ModalContents | null>();
-
+  const router = useRouter();
   const formHandler = async ({ password }: { password: string }) => {
     try {
       await updatePasswordAction({ password });
+      router.replace("/");
     } catch (error) {
       console.error(error);
       setModalContents(UPDATE_PASSWORD_MODAL_CONTENTS.error);

@@ -24,9 +24,13 @@ const resetPasswordAction = async ({ email }: { email: string }) => {
     },
   );
 
-  return supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.VERCEL_URL}/update-password`,
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.VERCEL_URL}/auth/callback?redirect=/update-password`,
   });
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
 };
 
 export default resetPasswordAction;

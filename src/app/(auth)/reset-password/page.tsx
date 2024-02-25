@@ -11,12 +11,15 @@ const Page = () => {
   const [modalContents, setModalContents] = useState<ModalContents | null>();
 
   const formHandler = async ({ email }: { email: string }) => {
-    const { error } = await resetPasswordAction({ email });
-    if (error) {
-      console.error(error);
-      setModalContents(RESET_PASSWORD_MODAL_CONTENTS.error);
-    } else {
-      setModalContents(RESET_PASSWORD_MODAL_CONTENTS.success);
+    try {
+      const data = await resetPasswordAction({ email });
+      if (!data) {
+        setModalContents(RESET_PASSWORD_MODAL_CONTENTS.error);
+      } else {
+        setModalContents(RESET_PASSWORD_MODAL_CONTENTS.success);
+      }
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -28,7 +31,7 @@ const Page = () => {
           buttonCallback={() => setModalContents(null)}
         />
       )}
-      <div className="flex flex-col justify-center items-center h-full gap-10">
+      <div className="flex h-full flex-col items-center justify-center gap-10">
         <h2 className="text-xl">비밀번호 재설정</h2>
         <div>
           비밀번호를 찾고자하는 이메일 주소를 입력해주세요. <br /> 입력받은
@@ -37,7 +40,7 @@ const Page = () => {
         <EmailForm authCallback={formHandler} buttonText="Next" />
         <div className="flex flex-row gap-x-2">
           <span>이미 계정이 있으신가요? </span>
-          <Link href="/sign-in" className="underline text-pink-500">
+          <Link href="/sign-in" className="text-pink-500 underline">
             로그인하기
           </Link>
         </div>
